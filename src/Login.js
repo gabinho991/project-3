@@ -5,7 +5,8 @@ const clientId =
 
 export function Login(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
-  const onLoginSuccess = () => {
+  const onLoginSuccess = (data) => {
+    console.log(data)
     setIsLoggedIn(true);
   };
   return (

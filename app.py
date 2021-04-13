@@ -14,7 +14,8 @@ socketio = SocketIO(app, cors_allowed_origins="*", json=json, manage_session=Fal
 @app.route("/<path:filename>")
 def index(filename):
     return send_from_directory("./build", filename)
-    
+
+
 @socketio.on("connect")
 def on_connect():
     print("User connected!")

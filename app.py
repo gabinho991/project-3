@@ -8,7 +8,7 @@ from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 
 app = Flask(__name__, static_folder="./build/static")
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
+# cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -25,13 +25,16 @@ socketio = SocketIO(app, cors_allowed_origins="*", json=json, manage_session=Fal
 def index(filename):
     return send_from_directory("./build", filename)
 
-
 @socketio.on("connect")
 def on_connect():
     print("User connected!")
 
+@socketio.on("login")
+def login(data):
+    print("User logged in")
+    
 socketio.run(
     app,
-    host=os.getenv("IP", "0.0.0.0"),
-    port=8081 if os.getenv("C9_PORT") else int(os.getenv("PORT", 8081)),
+    host=os.getenv('IP', '0.0.0.0'),
+    port=8081 if os.getenv('C9_PORT') else int(os.getenv('PORT', 8081)),
 )

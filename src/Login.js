@@ -5,10 +5,12 @@ const clientId =
 
 export function Login(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
+  const socket = props.socket;
+
   const onLoginSuccess = (data) => {
-    console.log(data)
     setIsLoggedIn(true);
   };
+
   return (
     <div>
       <GoogleLogin

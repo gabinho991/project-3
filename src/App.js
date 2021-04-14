@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import io from "socket.io-client";
+import { useState, useEffect } from "react";
+import { Login } from "./Login.js";
+import { Landing } from "./Landing.js";
+
+const socket = io();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  if (isLoggedIn) {
+    return <Landing socket={socket} setIsLoggedIn={setIsLoggedIn} />;
+  } else {
+    return (
+      <Login
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        socket={socket}
+      />
+    );
+  }
 }
 
 export default App;

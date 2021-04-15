@@ -5,8 +5,7 @@ const clientId =
 
 export function Login(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
-  const socket = props.socket;
-
+  
   const onLoginSuccess = (data) => {
     setIsLoggedIn(true);
   };
@@ -17,7 +16,6 @@ export function Login(props) {
         clientId={clientId}
         buttonText="Login"
         onSuccess={onLoginSuccess}
-        cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />
     </div>

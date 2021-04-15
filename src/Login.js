@@ -5,14 +5,14 @@ const clientId =
 
 export function Login(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
-  const socket = props.socket;
+  //const socket = props.socket;
 
   const onLoginSuccess = (data) => {
     setIsLoggedIn(true);
   };
 
   return (
-    <div>
+    
       <GoogleLogin
         clientId={clientId}
         buttonText="Login"
@@ -20,6 +20,5 @@ export function Login(props) {
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
       />
-    </div>
   );
 }

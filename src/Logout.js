@@ -12,6 +12,9 @@ export function Logout(props) {
     <div>
       <GoogleLogout
         clientId={clientId}
+        render={renderProps => (
+          <button onClick={renderProps.onClick} disabled={renderProps.disabled} id = 'NavButton'>Logout</button>
+        )}
         buttonText="Logout"
         onLogoutSuccess={onLogoutSuccess}
       ></GoogleLogout>

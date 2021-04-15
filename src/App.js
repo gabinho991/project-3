@@ -12,7 +12,7 @@ function App() {
   
   return (
     <div>
-      {isLoggedIn === false ? 
+      {isLoggedIn === true ? 
         (<Landing socket={socket} setIsLoggedIn={setIsLoggedIn} />)
         :
         (

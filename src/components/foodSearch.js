@@ -4,7 +4,7 @@ import * as React from 'react';
 export function FoodSearch() {
     
     return (
-        <h1>Hello from FoodSearch</h1>    
+        <h1>This feature will be available in Milestone 2</h1>    
     );
     
 }

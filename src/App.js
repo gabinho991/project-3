@@ -7,11 +7,12 @@ import { Landing } from "./Landing.js";
 const socket = io();
 
 function App() {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   return (
     <div>
-      {isLoggedIn === true ? 
+      {isLoggedIn === false ? 
         (<Landing socket={socket} setIsLoggedIn={setIsLoggedIn} />)
         :
         (

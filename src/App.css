@@ -1,6 +1,7 @@
 body {
   background-image: url(./wallpaperflare.com_wallpaper.jpg);
   background-size: cover;
+  background-attachment: fixed;
   
 }
 .wrap {
@@ -20,12 +21,59 @@ body {
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+}
+
 .NavBar {
     width: 100%;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     background-color: wheat;
-    padding: 10px 40px;
+    padding: 10px 0px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about_body {
+  display: grid;
+  margin: 0 2em;
+  background-color: rgba(0, 0, 0, .1);
+  border-radius: 20px;
+  padding: 2em;
+  justify-items: center;
+}
+
+.description {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  text-align: center;
+  padding: 0 6em;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .1);
+  width: 19em;
+  height: 25em;
+  border-radius: 20px;
+}
+
+.infoContainer p {
+  height: 100%;
+  display: flex;
+  text-align: center;
+  padding: 5px 20px;
 }
 
 .NavBar div {

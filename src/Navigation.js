@@ -13,8 +13,10 @@ import { Logout } from "./Logout.js";
 export function NavBar(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
   return (
-    <div className="wrapper">
-        <h1> Social Fitness </h1>
+    <div className="navBarWrapper">
+        <div className="Header">
+            <h1> Social Fitness </h1>
+        </div>
             <Router>
             <div className="NavBar">
                 <div className="about">

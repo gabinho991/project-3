@@ -7,6 +7,7 @@ import {
 
 import { About } from "./components/About";
 import { FoodSearch } from "./components/foodSearch";
+import { WorkoutSearch } from "./components/workoutSearch";
 import { Logout } from "./Logout.js";
 
 export function NavBar(props) {
@@ -26,6 +27,11 @@ export function NavBar(props) {
                         Food search
                     </Link>
                 </div>
+                <div className="workoutSearch">
+                    <Link id = 'NavButton' to="/workout">
+                        Workout search
+                    </Link>
+                </div>
                 <div className="Logout">
                     <Logout setIsLoggedIn={setIsLoggedIn} />
                 </div>
@@ -36,6 +42,9 @@ export function NavBar(props) {
                     </Route>
                     <Route path="/food">
                         <FoodSearch />
+                    </Route>
+                    <Route path="/workout">
+                        <WorkoutSearch />
                     </Route>
                 </Switch>
             </Router>

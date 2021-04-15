@@ -23,7 +23,7 @@ body {
 .NavBar {
     width: 100%;
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-columns: 25% 25% 25% 25%;
     background-color: wheat;
     padding: 10px 40px;
 }

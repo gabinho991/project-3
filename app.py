@@ -52,17 +52,17 @@ def on_login(data):
     givenName = str(data["profileObj"]["givenName"])
     familyName = str(data["profileObj"]["familyName"])
 
-    user = User(googleId=googleId, email=email, imageUrl=imageUrl,
+    user = models.User(googleId=googleId, email=email, imageUrl=imageUrl,
                 givenName=givenName, familyName=familyName)
-    ret = DB.session.query(exists().where(User.googleId == googleId)).scalar()
+    ret = DB.session.query(exists().where(models.User.googleId == googleId)).scalar()
     if(ret is False):
         DB.session.add(user)
         DB.session.commit()
         # Debugging print, for anyone needing only to query, this is how 
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
-    print(User.query.all()) 
-    socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
+    print(models.User.query.all()) 
+    #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 
 socketio.run(

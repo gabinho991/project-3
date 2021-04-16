@@ -4,9 +4,9 @@ from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
-from dotenv import find_dotenv, load_dotenv
+# from dotenv import find_dotenv, load_dotenv
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 
 app = Flask(__name__, static_folder="./build/static")
 

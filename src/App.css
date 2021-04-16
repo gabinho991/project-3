@@ -33,7 +33,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    background-color: wheat;
+    background-color: #FFECCC;
     padding: 10px 0px;
 }
 
@@ -46,10 +46,11 @@ body {
 .about_body {
   display: grid;
   margin: 0 2em;
-  background-color: rgba(0, 0, 0, .1);
-  border-radius: 20px;
+  background-color: #55433B;
+  width: 100%;
   padding: 2em;
   justify-items: center;
+  row-gap: 3em;
 }
 
 .description {
@@ -57,6 +58,11 @@ body {
   grid-column-end: 5;
   text-align: center;
   padding: 0 6em;
+  color: white;
+}
+
+.description h1 {
+  margin: 0px;
 }
 
 .infoContainer {
@@ -67,6 +73,8 @@ body {
   width: 19em;
   height: 25em;
   border-radius: 20px;
+  background-color: #FFECCC;
+  transition: all .2s ease-in-out;
 }
 
 .infoContainer p {
@@ -80,6 +88,15 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+.title {
+  color: #382C14;
+}
+
+.infoContainer:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 #NavButton {

@@ -18,9 +18,9 @@ export function About() {
               </p>
             </div>
             <div className="infoContainer">
-              <h2>Personal Information Tab</h2>
+              <h2>Profile Tab</h2>
               <p>
-                The personal information tab allows user to store their current age, weight, height and gender in their 
+                The profile tab allows user to store their current age, weight, height and gender in their 
                 profile and also make chages to it if necessary.
               </p>
             </div>

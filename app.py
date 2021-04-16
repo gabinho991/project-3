@@ -15,7 +15,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*",
                     json=json, manage_session=False)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQL_DATABUSE_URL")
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

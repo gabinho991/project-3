@@ -9,12 +9,14 @@ export function Logout(props) {
     setIsLoggedIn(false);
   };
   return (
-    <div>
-      <GoogleLogout
-        clientId={clientId}
-        buttonText="Logout"
-        onLogoutSuccess={onLogoutSuccess}
-      ></GoogleLogout>
-    </div>
+    <GoogleLogout
+      clientId={clientId}
+      render={renderProps => (
+        // eslint-disable-next-line
+        <a onClick={renderProps.onClick} disabled={renderProps.disabled} id="NavButton">Logout</a> 
+      )}
+      buttonText="Logout"
+      onLogoutSuccess={onLogoutSuccess}
+    ></GoogleLogout>
   );
 }

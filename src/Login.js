@@ -11,13 +11,12 @@ export function Login(props) {
     setIsLoggedIn(true);
   };
   return (
-    <div>
+    
       <GoogleLogin
         clientId={clientId}
         buttonText="Login"
         onSuccess={onLoginSuccess}
         isSignedIn={true}
       />
-    </div>
   );
 }

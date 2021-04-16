@@ -25,22 +25,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 DB = SQLAlchemy(app)
 
 # User class is here because of import errors, need to look into this further
-class User(DB.Model):
-    # Unique ID from users google account
-    googleId = DB.Column(DB.String(120), unique=True,
-                         nullable=False, primary_key=True)
-    email = DB.Column(DB.String(120), unique=True, nullable=False)
-    imageUrl = DB.Column(DB.String(250), nullable=True)
-    givenName = DB.Column(DB.String(120), nullable=False)  # First name
-    familyName = DB.Column(DB.String(120), nullable=False)  # Last name
-    # Automatically made to null values in db
-    age = DB.Column(DB.String(4), nullable=True)
-    gender = DB.Column(DB.String(15), nullable=True)
-    weight = DB.Column(DB.String(4), nullable=True)
-    height = DB.Column(DB.String(4), nullable=True)
-
-    def __repr__(self):
-        return '<User %r>' % self.googleId
+import models
 
 
 socketio = SocketIO(app, cors_allowed_origins="*",
@@ -70,16 +55,17 @@ def on_login(data):
     givenName = str(data["profileObj"]["givenName"])
     familyName = str(data["profileObj"]["familyName"])
 
-    user = User(googleId=googleId, email=email, imageUrl=imageUrl,
+    user = models.User(googleId=googleId, email=email, imageUrl=imageUrl,
                 givenName=givenName, familyName=familyName)
-    ret = DB.session.query(exists().where(User.googleId == googleId)).scalar()
+    ret = DB.session.query(exists().where(models.User.googleId == googleId)).scalar()
     if(ret is False):
         DB.session.add(user)
         DB.session.commit()
         # Debugging print, for anyone needing only to query, this is how 
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
-    print(User.query.all()) 
+    print(models.User.query.all()) 
+    #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 
 if __name__ == "__main__":

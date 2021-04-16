@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 
 import { About } from "./components/About";
+import { Profile } from "./components/Profile";
+import { SocialMedia } from "./components/SocialMedia";
 import { FoodSearch } from "./components/foodSearch";
 import { WorkoutSearch } from "./components/workoutSearch";
 import { Logout } from "./Logout.js";
@@ -19,28 +21,44 @@ export function NavBar(props) {
         </div>
             <Router>
             <div className="NavBar">
-                <div className="about">
+                <div className="NavBtnWrap">
                     <Link id = 'NavButton' to="/about">
                         About
                     </Link>
                 </div>
-                <div className="foodSearch">
+                <div className="NavBtnWrap">
+                    <Link id = 'NavButton' to="/profile">
+                        Profile
+                    </Link>
+                </div>
+                <div className="NavBtnWrap">
+                    <Link id = 'NavButton' to="/socialMedia">
+                        Social Media
+                    </Link>
+                </div>
+                <div className="NavBtnWrap">
                     <Link id = 'NavButton' to="/food">
                         Food search
                     </Link>
                 </div>
-                <div className="workoutSearch">
+                <div className="NavBtnWrap">
                     <Link id = 'NavButton' to="/workout">
                         Workout search
                     </Link>
                 </div>
-                <div className="Logout">
+                <div className="NavBtnWrap">
                     <Logout setIsLoggedIn={setIsLoggedIn} />
                 </div>
             </div>
                 <Switch>
                     <Route path="/about">
                         <About />
+                    </Route>
+                    <Route path="/profile">
+                        <Profile />
+                    </Route>
+                    <Route path="/socialMedia">
+                        <SocialMedia />
                     </Route>
                     <Route path="/food">
                         <FoodSearch />

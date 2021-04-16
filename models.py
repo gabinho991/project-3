@@ -17,7 +17,7 @@ class User(DB.Model):
     def __repr__(self):
         return '<User %r>' % self.googleId
 
-class Social(DB.Models):
+class Social(DB.Model):
     # Unique ID from users google account
     googleId = DB.Column(DB.String(120), unique=False,
                          nullable=False, primary_key=True)

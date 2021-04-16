@@ -1,0 +1,7 @@
+flask-cors
+Flask-SQLAlchemy==2.1
+coverage
+pylint
+Flask
+flask-socketio
+psycopg2-binary

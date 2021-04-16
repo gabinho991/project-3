@@ -13,8 +13,17 @@ class User(DB.Model):
     gender = DB.Column(DB.String(15), nullable=True)
     weight = DB.Column(DB.String(4), nullable=True)
     height = DB.Column(DB.String(4), nullable=True)
+    
+    def __repr__(self):
+        return '<User %r>' % self.googleId
+
+class Social(DB.models):
+    # Unique ID from users google account
+    googleId = DB.Column(DB.String(120), unique=False,
+                         nullable=False, primary_key=True)
+    # Automatically made to null values in db
     post = DB.Column(DB.String(300), unique=False, nullable=True)
     date = DB.Column(DB.DateTime, unique=False, nullable=True)
-
+    
     def __repr__(self):
         return '<User %r>' % self.googleId

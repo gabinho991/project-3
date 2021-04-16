@@ -4,9 +4,9 @@ from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
-from dotenv import find_dotenv, load_dotenv
+# from dotenv import find_dotenv, load_dotenv
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 
 app = Flask(__name__, static_folder="./build/static")
 
@@ -79,8 +79,10 @@ def on_login(data):
     print(User.query.all()) 
 
 
-socketio.run(
-    app,
-    host=os.getenv('IP', '0.0.0.0'),
-    port=8081 if os.getenv('C9_PORT') else int(os.getenv('PORT', 8081)),
-)
+if __name__ == "__main__":
+    socketio.run(
+        app,
+        debug=True,
+        host=os.getenv('IP', '0.0.0.0'),
+        port=8081 if os.getenv('C9_PORT') else int(os.getenv('PORT', 8081)),
+    )

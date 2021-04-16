@@ -19,12 +19,8 @@ class User(DB.Model):
 
 class Social(DB.models):
     # Unique ID from users google account
-    googleId = DB.Column(DB.String(120), unique=True,
+    googleId = DB.Column(DB.String(120), unique=False,
                          nullable=False, primary_key=True)
-    email = DB.Column(DB.String(120), unique=True, nullable=False)
-    imageUrl = DB.Column(DB.String(250), nullable=True)
-    givenName = DB.Column(DB.String(120), nullable=False)  # First name
-    familyName = DB.Column(DB.String(120), nullable=False)  # Last name
     # Automatically made to null values in db
     post = DB.Column(DB.String(300), unique=False, nullable=True)
     date = DB.Column(DB.DateTime, unique=False, nullable=True)

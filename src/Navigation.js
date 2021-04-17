@@ -16,11 +16,11 @@ export function NavBar(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
   return (
     <div className="navBarWrapper">
-        <div className="Header">
-            <h1> Social Fitness </h1>
-        </div>
             <Router>
             <div className="NavBar">
+                <div className="Header">
+                    <h1> Social Fitness </h1>
+                </div>
                 <div className="NavBtnWrap">
                     <Link id = 'NavButton' to="/about">
                         About
@@ -50,22 +50,25 @@ export function NavBar(props) {
                     <Logout setIsLoggedIn={setIsLoggedIn} />
                 </div>
             </div>
+            
                 <Switch>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/profile">
-                        <Profile />
-                    </Route>
-                    <Route path="/socialMedia">
-                        <SocialMedia />
-                    </Route>
-                    <Route path="/food">
-                        <FoodSearch />
-                    </Route>
-                    <Route path="/workout">
-                        <WorkoutSearch />
-                    </Route>
+                    <div className="mainBody">
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/profile">
+                            <Profile />
+                        </Route>
+                        <Route path="/socialMedia">
+                            <SocialMedia />
+                        </Route>
+                        <Route path="/food">
+                            <FoodSearch />
+                        </Route>
+                        <Route path="/workout">
+                            <WorkoutSearch />
+                        </Route>
+                    </div>
                 </Switch>
             </Router>
         

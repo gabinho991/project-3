@@ -27,14 +27,23 @@ body {
   align-items: center;
   width: 100%;
   background-color: white;
+  grid-column-start: 1;
+  grid-column-end: 7;
 }
 
 .NavBar {
     width: 100%;
-    display: grid;
-    grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
-    background-color: #FFECCC;
-    padding: 10px 0px;
+  display: grid;
+  grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
+  grid-template-rows: 73px 83px;
+  background-color: #FFECCC;
+  position: fixed;
+  top: 0;
+  height: 10em;
+}
+
+.mainBody {
+  padding-top: 10em;
 }
 
 .about {

@@ -13,7 +13,7 @@ export function Logout(props) {
       clientId={clientId}
       render={renderProps => (
         // eslint-disable-next-line
-        <a onClick={renderProps.onClick} disabled={renderProps.disabled} id="NavButton">Logout</a> 
+        <a onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</a> 
       )}
       buttonText="Logout"
       onLogoutSuccess={onLogoutSuccess}

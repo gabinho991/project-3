@@ -4,9 +4,9 @@ from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
-# from dotenv import find_dotenv, load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
@@ -65,7 +65,7 @@ def on_login(data):
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
     print(models.User.query.all()) 
-    #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
+    socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 
 if __name__ == "__main__":

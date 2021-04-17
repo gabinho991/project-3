@@ -49,7 +49,7 @@ export function NavBar(props) {
                     </Link>
                 </div>
                 <div className="NavBtnWrap">
-                    <Link to="/">
+                    <Link id = 'NavButton' to="/">
                     <Logout setIsLoggedIn={setIsLoggedIn} />
                     </Link>
                 </div>

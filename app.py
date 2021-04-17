@@ -65,7 +65,7 @@ def on_login(data):
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
     print(models.User.query.all()) 
-    #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
+    socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 
 if __name__ == "__main__":

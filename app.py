@@ -4,12 +4,12 @@ from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
-# from dotenv import find_dotenv, load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+# SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 
 app = Flask(__name__, static_folder="./build/static")
 
@@ -18,8 +18,8 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*",
                     json=json, manage_session=False)
 
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+# app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 DB = SQLAlchemy(app)

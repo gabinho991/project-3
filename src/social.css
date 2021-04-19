@@ -32,6 +32,8 @@
   position: fixed;
   top: 20%;
   left: 55%;
+  overflow-y: scroll;
+ height: 100vh;
 }
 pa{
 width: 300px;
@@ -43,6 +45,8 @@ width: 300px;
   color: #fff;
   font-family: arial;
   position:relative;
-   display: flex;
+   display: flex;}
+   
+
+
   
-}

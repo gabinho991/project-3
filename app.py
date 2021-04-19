@@ -49,22 +49,25 @@ def on_connect():
 ''' Called when user successfully logs in, everything is converted to string because its easier to manage in the DB '''
 @socketio.on("login")
 def on_login(data):
-    googleId = str(data["profileObj"]["googleId"])
-    email = str(data["profileObj"]["email"])
-    imageUrl = str(data["profileObj"]["imageUrl"])
-    givenName = str(data["profileObj"]["givenName"])
-    familyName = str(data["profileObj"]["familyName"])
+    thisGoogleId = str(data["profileObj"]["googleId"])
+    thisEmail = str(data["profileObj"]["email"])
+    thisImageUrl = str(data["profileObj"]["imageUrl"])
+    thisGivenName = str(data["profileObj"]["givenName"])
+    thisFamilyName = str(data["profileObj"]["familyName"])
 
-    user = models.User(googleId=googleId, email=email, imageUrl=imageUrl,
-                givenName=givenName, familyName=familyName)
-    ret = DB.session.query(exists().where(models.User.googleId == googleId)).scalar()
+    user = models.User(googleId=thisGoogleId, email=thisEmail, imageUrl=thisImageUrl,
+                givenName=thisGivenName, familyName=thisFamilyName)
+    ret = DB.session.query(exists().where(models.User.googleId == thisGoogleId)).scalar()
     if(ret is False):
         DB.session.add(user)
         DB.session.commit()
         # Debugging print, for anyone needing only to query, this is how 
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
-    print(models.User.query.all()) 
+    print(DB.session.query(models.User).filter_by(googleId=thisGoogleId).all())
+    currentUserInfo = DB.session.query(models.User).filter_by(googleId=thisGoogleId).all()
+    socketio.emit('personal_info', currentUserInfo, broadcast=True, include_self=False)
+    print(models.User.query.all())
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 

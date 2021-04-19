@@ -1,0 +1,50 @@
+.overarching{
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin: auto;
+    padding-bottom: 6%;
+}
+
+.profile_head{
+    background-color: blue;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-bottom: 1%;
+}
+
+.boxes{
+    float:left; 
+    background:Red;
+    width:23.65%;
+    border-style: solid;
+    border-color: yellow;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+
+img{
+    border-radius: 50%;
+    width: 10%;
+}
+
+div{
+    align: center;
+}
+
+.button{
+  background-color: red;
+  border-style: solid;
+  border-color: yellow;
+  color: white;
+  margin-top: 1%;
+  padding: 1% 2%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.edit{
+    color: purple;
+}

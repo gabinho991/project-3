@@ -1,13 +1,10 @@
-import { useState, React, useEffect } from 'react';
-import io from 'socket.io-client';
+import { useState, React } from 'react';
 // import '../profile.css';
 
 export function Profile(props) {
     const info = props.info;
-    const changeInfo=props.changeInfo;
     const socket=props.socket;
     const [edit, changeEdit] = useState(false);
-    // console.log(info);
     function isEdit()
     {
         changeEdit(true);
@@ -36,7 +33,6 @@ export function Profile(props) {
     }
     socket.on('personal_info', (data) =>{
         console.log(data);
-        // changeInfo({...data});
     });
 
     return (

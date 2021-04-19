@@ -58,7 +58,7 @@ export function NavBar(props) {
                         <About />
                     </Route>
                     <Route path="/profile">
-                        <Profile info={info} changeInfo={changeInfo} />
+                        <Profile socket={socket} info={info} changeInfo={changeInfo} />
                     </Route>
                     <Route path="/socialMedia">
                         <SocialMedia />

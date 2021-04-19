@@ -10,6 +10,10 @@ function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [info, changeInfo] = useState({});
+  socket.on('personal_info', (data) =>{
+      console.log(data);
+      changeInfo({...data});
+  });
   return (
     <div>
       {isLoggedIn === true ? 

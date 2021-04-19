@@ -31,7 +31,7 @@ import models
 socketio = SocketIO(app, cors_allowed_origins="*",
                     json=json, manage_session=False)
 
-DB.create_all()
+DB.create_all() # likely not needed anymore
 
 '''Load up index.html to start'''
 @app.route("/", defaults={"filename": "index.html"})
@@ -57,7 +57,7 @@ def on_login(data):
     thisFamilyName = str(data["profileObj"]["familyName"])
 
     user = models.User(googleId=thisGoogleId, email=thisEmail, imageUrl=thisImageUrl,
-    givenName=thisGivenName, familyName=thisFamilyName)
+    givenName=thisGivenName, familyName=thisFamilyName, age="0",height="0", gender="none", weight="none")
     ret = DB.session.query(exists().where(models.User.googleId == thisGoogleId)).scalar()
     if(ret is False):
         DB.session.add(user)
@@ -65,7 +65,7 @@ def on_login(data):
         # Debugging print, for anyone needing only to query, this is how 
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
-    # print(DB.session.query(models.User).filter_by(googleId=thisGoogleId).all())
+    print(DB.session.query(models.User).filter_by(googleId=thisGoogleId).all())
     currentUserInfo = DB.session.query(models.User).filter_by(googleId=thisGoogleId).first()
     personal_data = {
         "googleID": currentUserInfo.googleId,
@@ -79,7 +79,7 @@ def on_login(data):
     }
     print(personal_data)
     socketio.emit('personal_info', personal_data, broadcast=True, include_self=True)
-    # print(models.User.query.all())
+    print(models.User.query.all())
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 if __name__ == "__main__":

@@ -13,6 +13,7 @@ export function Login(props) {
     socket.emit("login" , data)
     setIsLoggedIn(true);
     changeInfo({...data});
+    console.log(data);
   };
   return (
     

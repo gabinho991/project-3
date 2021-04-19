@@ -19,13 +19,25 @@ export function Profile(props) {
         changeEdit(true);
         document.getElementById("editButton").style.display = "block";
         document.getElementById("editPage").style.display = "none";
-        const editAge = document.getElementById("editAge").value;
-        console.log(editAge)
+        var editAge = document.getElementById("editAge").value;
+        if(editAge === "") editAge = info.age;
+        
+        var editGender = document.getElementById("editGender").value;
+        if(editGender === "") editGender = info.gender;
+        
+        var editWeight = document.getElementById("editWeight").value;
+        if(editWeight === "") editWeight = info.weight;
+        
+        var editHeight = document.getElementById("editHeight").value;
+        if(editHeight === "") editHeight = info.height;
+        
+        console.log({"googleID": info.googleID, "editAge": editAge, "editGender": editGender, "editWeight": editWeight, "editHeight": editHeight})
+        socket.emit("onSubmit", {"googleID": info.googleID, "editAge": editAge, "editGender": editGender, "editWeight": editWeight, "editHeight": editHeight});
     }
-    // socket.on('personal_info', (data) =>{
-    //     console.log(data);
-    //     changeInfo({...data});
-    // });
+    socket.on('personal_info', (data) =>{
+        console.log(data);
+        // changeInfo({...data});
+    });
 
     return (
         <div className="overarching">

@@ -82,6 +82,31 @@ def on_login(data):
     print(models.User.query.all())
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
+'''called when the user submits changes'''
+@socketio.on("onSubmit")
+def updateDB(data):
+    print(data)
+    # socketio.emit('personal_info', data, broadcast=True, include_self=True)
+    modifiedUser = DB.session.query(models.User).filter_by(googleId=data.googleID).first()
+    modifiedUser.age = data.editAge
+    modifiedUser.gender = data.editGender
+    modifiedUser.weight = data.editWeight
+    modifiedUser.height = data.editHeight
+    DB.session.commit()
+    
+    currentUserInfo = DB.session.query(models.User).filter_by(googleId=data.googleID).first()
+    personal_data = {
+        "googleID": currentUserInfo.googleId,
+        "imageUrl": currentUserInfo.imageUrl,
+        "givenName": currentUserInfo.givenName,
+        "familyName": currentUserInfo.familyName,
+        "age": currentUserInfo.age,
+        "gender": currentUserInfo.gender,
+        "weight": currentUserInfo.weight,
+        "height": currentUserInfo.height
+    }
+    print("Updated Information: ", personal_data)
+
 if __name__ == "__main__":
     socketio.run(
         app,

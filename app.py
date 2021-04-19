@@ -5,9 +5,10 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from datetime import date
-# from dotenv import find_dotenv, load_dotenv
+from sqlalchemy import desc
+from dotenv import load_dotenv, find_dotenv
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
@@ -31,7 +32,6 @@ import models
 
 socketio = SocketIO(app, cors_allowed_origins="*",
                     json=json, manage_session=False)
-
 DB.create_all()
 
 
@@ -65,17 +65,22 @@ def on_login(data):
         # Debugging print, for anyone needing only to query, this is how 
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
+    all_data = models.Social.query.order_by(desc('date')).all()
+    lst=[]
+    for elm in all_data:
+        lst.append(elm.post)
     print(models.User.query.all()) 
-    #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
+    socketio.emit('user_info', [givenName, familyName, imageUrl,googleId,lst],broadcast=True,include_self=False)
 @socketio.on("post")
 def newpost(data):
     '''save user's post in the DB'''
-    Id=data['ID']
-    new_post=data['post']
+    Id=data[1]
+    new_post=data[0]
     new_date = date.today()
     new_post = models.Social(googleId=Id,post=new_post,date=new_date)
     DB.session.add(new_post)
     DB.session.commit()
+    print(models.Social.query.all()) 
 
 if __name__ == "__main__":
     socketio.run(

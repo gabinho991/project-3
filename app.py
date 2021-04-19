@@ -86,7 +86,7 @@ def on_login(data):
         "height": currentUserInfo.height
     }
     print(personal_data)
-    socketio.emit('personal_info', personal_data, broadcast=True, include_self=False)
+    socketio.emit('personal_info', personal_data, broadcast=True, include_self=True)
     # print(models.User.query.all())
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 

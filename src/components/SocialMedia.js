@@ -1,32 +1,39 @@
 import * as React from 'react';
 import  { useState, useRef } from 'react';
-import '../App.css';
-import io from 'socket.io-client';
+import '../social.css';
 
 
 
-export function SocialMedia() {
+
+export function SocialMedia(props) {
     const [post, updatepost] = useState([]);
     const message = useRef(null);
     const [isShown, setshow] = useState(true);
-    const socket = io();
+   //const socket= props.socket;
+  // const User = props.userinfos;
+
     function post_function()
     {
-        
+        const nmessage = message.current.value;
         const new_post=[...post];
-        new_post.push(message);
-        updatepost(new_post);
-        socket.emit('post',{post:new_post});
+        new_post.push(nmessage);
+       updatepost(new_post);
+        //socket.emit('post',[nmessage,User[3]]);
+       
+       //setshow((prevShow) => !prevShow);
     }
     function post_button()
     {
          setshow((prevShow) => !prevShow);
     }
+   
     return (
         <div>
-        <h1>Social Media Page</h1> 
+        <h1>Social Media Page</h1>
+        
+   
         <div className="post">
-         <button
+         <button class="button"
               type="button"
               onClick={() => {
                 post_button();
@@ -35,21 +42,34 @@ export function SocialMedia() {
               {' '}
             Click here to add a post
             </button>
+            
+            
      {!isShown ? (   
    <div>
-     <textarea ref={message} placeholder="Type message.." />
-            <button
+     <textarea ref={message} placeholder="Type message.." rows="6" cols="50" />
+            <button class="button2"
               type="button"
+             
               onClick={() => {
                 post_function();
               }}
             >
               {' '}
               Post
+              
             </button>
+            
         </div>
         
          ) : null}
+         <div class="userpost">
+            {post.map((item) => (
+            <div>
+               <pa> {item} </pa>
+              
+              </div>
+            ))}
+        </div>
         </div>
         </div>
     );

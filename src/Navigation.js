@@ -15,6 +15,9 @@ import { Logout } from "./Logout.js";
 
 export function NavBar(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
+  const socket=props.socket;
+  const info = props.info;
+  const changeInfo=props.changeInfo;
   return (
     <div className="navBarWrapper">
             <Router>
@@ -53,27 +56,24 @@ export function NavBar(props) {
                     </Link>
                 </div>
             </div>
-            
+                
                 <Switch>
                     <div className="mainBody">
-                        <Route path="/home">
-                            <Home />
-                        </Route>
-                        <Route path="/about">
-                            <About />
-                        </Route>
-                        <Route path="/profile">
-                            <Profile />
-                        </Route>
-                        <Route path="/socialMedia">
-                            <SocialMedia />
-                        </Route>
-                        <Route path="/food">
-                            <FoodSearch />
-                        </Route>
-                        <Route path="/workout">
-                            <WorkoutSearch />
-                        </Route>
+                    <Route path="/about">
+                        <About />
+                    </Route>
+                    <Route path="/profile">
+                        <Profile socket={socket} info={info} changeInfo={changeInfo} />
+                    </Route>
+                    <Route path="/socialMedia">
+                        <SocialMedia />
+                    </Route>
+                    <Route path="/food">
+                        <FoodSearch />
+                    </Route>
+                    <Route path="/workout">
+                        <WorkoutSearch />
+                    </Route>
                     </div>
                 </Switch>
             </Router>

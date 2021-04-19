@@ -14,6 +14,9 @@ import { Logout } from "./Logout.js";
 
 export function NavBar(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
+  const socket=props.socket;
+  const info = props.info;
+  const changeInfo=props.changeInfo;
   return (
     <div className="navBarWrapper">
         <div className="Header">
@@ -55,7 +58,7 @@ export function NavBar(props) {
                         <About />
                     </Route>
                     <Route path="/profile">
-                        <Profile />
+                        <Profile info={info} changeInfo={changeInfo} />
                     </Route>
                     <Route path="/socialMedia">
                         <SocialMedia />

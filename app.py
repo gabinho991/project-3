@@ -86,15 +86,16 @@ def on_login(data):
 @socketio.on("onSubmit")
 def updateDB(data):
     print(data)
+    # print(data.googleID)
     # socketio.emit('personal_info', data, broadcast=True, include_self=True)
-    modifiedUser = DB.session.query(models.User).filter_by(googleId=data.googleID).first()
-    modifiedUser.age = data.editAge
-    modifiedUser.gender = data.editGender
-    modifiedUser.weight = data.editWeight
-    modifiedUser.height = data.editHeight
+    modifiedUser = DB.session.query(models.User).filter_by(googleId=data["googleID"]).first()
+    modifiedUser.age = data["editAge"]
+    modifiedUser.gender = data["editGender"]
+    modifiedUser.weight = data["editWeight"]
+    modifiedUser.height = data["editHeight"]
     DB.session.commit()
     
-    currentUserInfo = DB.session.query(models.User).filter_by(googleId=data.googleID).first()
+    currentUserInfo = DB.session.query(models.User).filter_by(googleId=data["googleID"]).first()
     personal_data = {
         "googleID": currentUserInfo.googleId,
         "imageUrl": currentUserInfo.imageUrl,
@@ -106,6 +107,7 @@ def updateDB(data):
         "height": currentUserInfo.height
     }
     print("Updated Information: ", personal_data)
+    socketio.emit('personal_info', personal_data, broadcast=True, include_self=True)
 
 if __name__ == "__main__":
     socketio.run(

@@ -2,7 +2,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 import { About } from "./components/About";
@@ -10,6 +11,7 @@ import { Profile } from "./components/Profile";
 import { SocialMedia } from "./components/SocialMedia";
 import { FoodSearch } from "./components/foodSearch";
 import { WorkoutSearch } from "./components/workoutSearch";
+import { Home } from "./components/home";
 import { Logout } from "./Logout.js";
 
 export function NavBar(props) {
@@ -19,11 +21,11 @@ export function NavBar(props) {
   const changeInfo=props.changeInfo;
   return (
     <div className="navBarWrapper">
-        <div className="Header">
-            <h1> Social Fitness </h1>
-        </div>
             <Router>
             <div className="NavBar">
+                <div className="Header">
+                    <h1> Social Fitness </h1>
+                </div>
                 <div className="NavBtnWrap">
                     <Link id = 'NavButton' to="/about">
                         About
@@ -50,9 +52,12 @@ export function NavBar(props) {
                     </Link>
                 </div>
                 <div className="NavBtnWrap">
+                    <Link id = 'NavButton' to="/">
                     <Logout setIsLoggedIn={setIsLoggedIn} />
+                    </Link>
                 </div>
             </div>
+            
                 <Switch>
                     <Route path="/about">
                         <About />

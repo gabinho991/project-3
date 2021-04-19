@@ -66,9 +66,28 @@ def on_login(data):
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
     print(DB.session.query(models.User).filter_by(googleId=thisGoogleId).all())
-    currentUserInfo = DB.session.query(models.User).filter_by(googleId=thisGoogleId).all()
-    socketio.emit('personal_info', currentUserInfo, broadcast=True, include_self=False)
-    print(models.User.query.all())
+    currentUserInfo = DB.session.query(models.User).filter_by(googleId=thisGoogleId).first()
+    # print("goodle id: ", currentUserInfo.googleId)
+    # print("image url: ", currentUserInfo.imageUrl)
+    # print("given name: ", currentUserInfo.givenName)
+    # print("family name: ", currentUserInfo.familyName)
+    # print("age: ", currentUserInfo.age)
+    # print("gender: ", currentUserInfo.gender)
+    # print("weight: ", currentUserInfo.weight)
+    # print("height: ", currentUserInfo.height)
+    personal_data = {
+        "googleID": currentUserInfo.googleId,
+        "imageUrl": currentUserInfo.imageUrl,
+        "givenName": currentUserInfo.givenName,
+        "familyName": currentUserInfo.familyName,
+        "age": currentUserInfo.age,
+        "gender": currentUserInfo.gender,
+        "weight": currentUserInfo.weight,
+        "height": currentUserInfo.height
+    }
+    print(personal_data)
+    socketio.emit('personal_info', personal_data, broadcast=True, include_self=False)
+    # print(models.User.query.all())
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
 

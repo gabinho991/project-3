@@ -12,7 +12,6 @@ from sqlalchemy import desc
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
-
 app = Flask(__name__, static_folder="./build/static")
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})

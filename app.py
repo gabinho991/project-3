@@ -4,6 +4,7 @@ from flask_socketio import SocketIO
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
+from datetime import date
 # from dotenv import find_dotenv, load_dotenv
 
 # load_dotenv(find_dotenv())
@@ -66,7 +67,15 @@ def on_login(data):
         # be mindful of merge conflicts and try minimize them
     print(models.User.query.all()) 
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
-
+@socketio.on("post")
+def newpost(data):
+    '''save user's post in the DB'''
+    Id=data['ID']
+    new_post=data['post']
+    new_date = date.today()
+    new_post = models.Social(googleId=Id,post=new_post,date=new_date)
+    DB.session.add(new_post)
+    DB.session.commit()
 
 if __name__ == "__main__":
     socketio.run(

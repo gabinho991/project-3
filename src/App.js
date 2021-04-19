@@ -4,9 +4,17 @@ import { useState } from "react";
 import { Login } from "./Login.js";
 import { Landing } from "./Landing.js";
 
+import  { useEffect } from 'react';
+
+
 const socket = io();
 
 function App() {
+  
+  useEffect(() => {
+    console.log("........................................")
+    socket.emit('test', 'data');
+    }, []);
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   

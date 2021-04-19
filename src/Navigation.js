@@ -3,7 +3,6 @@ import {
   Switch,
   Route,
   Link,
-  Redirect
 } from "react-router-dom";
 
 import { About } from "./components/About";
@@ -57,9 +56,6 @@ export function NavBar(props) {
             
                 <Switch>
                     <div className="mainBody">
-                        <Route exact path="/">
-                            <Redirect to="/home" />
-                        </Route>
                         <Route path="/home">
                             <Home />
                         </Route>

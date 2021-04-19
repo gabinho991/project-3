@@ -81,7 +81,11 @@ def on_login(data):
     socketio.emit('personal_info', personal_data, broadcast=True, include_self=False)
     # print(models.User.query.all())
     #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
-
+    
+    @socketio.on("personal_info")
+    def on_personal_info():
+        socketio.emit('personal_info', personal_data, broadcast=True, include_self=False)
+    
 
 if __name__ == "__main__":
     socketio.run(

@@ -33,7 +33,7 @@ socketio = SocketIO(app, cors_allowed_origins="*",
 
 DB.create_all()
 
-
+'''Load up index.html to start'''
 @app.route("/", defaults={"filename": "index.html"})
 @app.route("/<path:filename>")
 def index(filename):
@@ -46,7 +46,8 @@ def index(filename):
 def on_connect():
     print("User connected!")
 
-''' Called when user successfully logs in, everything is converted to string because its easier to manage in the DB '''
+''' Called when user successfully logs in, everything is
+converted to string because its easier to manage in the DB '''
 @socketio.on("login")
 def on_login(data):
     thisGoogleId = str(data["profileObj"]["googleId"])
@@ -56,7 +57,7 @@ def on_login(data):
     thisFamilyName = str(data["profileObj"]["familyName"])
 
     user = models.User(googleId=thisGoogleId, email=thisEmail, imageUrl=thisImageUrl,
-                givenName=thisGivenName, familyName=thisFamilyName)
+    givenName=thisGivenName, familyName=thisFamilyName)
     ret = DB.session.query(exists().where(models.User.googleId == thisGoogleId)).scalar()
     if(ret is False):
         DB.session.add(user)

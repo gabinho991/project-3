@@ -5,23 +5,22 @@ const clientId =
 
 export function Login(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
-  const socket= props.socket;
-  const info=props.info;
-  const changeInfo=props.changeInfo;
-  
+  const socket = props.socket;
+  const info = props.info;
+  const changeInfo = props.changeInfo;
+
   const onLoginSuccess = (data) => {
-    socket.emit("login" , data)
+    socket.emit("login", data);
     setIsLoggedIn(true);
-    changeInfo({...data});
+    changeInfo({ ...data });
     console.log(data);
   };
   return (
-    
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Login"
-        onSuccess={onLoginSuccess}
-        isSignedIn={true}
-      />
+    <GoogleLogin
+      clientId={clientId}
+      buttonText="Login"
+      onSuccess={onLoginSuccess}
+      isSignedIn={true}
+    />
   );
 }

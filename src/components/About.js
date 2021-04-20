@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 
-export function About() {
+export function About(props) {
     
     return (
         <div className="about">

@@ -9,11 +9,14 @@ const socket = io();
 function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
+  const [info, changeInfo] = useState({});
+  socket.on('personal_info', (data) =>{
+      changeInfo({...data});
+  });
   return (
     <div>
       {isLoggedIn === true ? 
-        (<Landing socket={socket} setIsLoggedIn={setIsLoggedIn} />)
+        (<Landing info={info} changeInfo={changeInfo} socket={socket} setIsLoggedIn={setIsLoggedIn} />)
         :
         (
         <div className="wrap">
@@ -24,6 +27,8 @@ function App() {
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
               socket={socket}
+              info={info}
+              changeInfo={changeInfo}
             />
           </div>
         </div>

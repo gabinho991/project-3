@@ -27,14 +27,23 @@ body {
   align-items: center;
   width: 100%;
   background-color: white;
+  grid-column-start: 1;
+  grid-column-end: 7;
 }
 
 .NavBar {
     width: 100%;
-    display: grid;
-    grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
-    background-color: #FFECCC;
-    padding: 10px 0px;
+  display: grid;
+  grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
+  grid-template-rows: 73px 83px;
+  background-color: #FFECCC;
+  position: fixed;
+  top: 0;
+  height: 10em;
+}
+
+.mainBody {
+  padding-top: 10em;
 }
 
 .about {
@@ -96,6 +105,23 @@ body {
   text-align: center;
 }
 
+.homeTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 0 10em;
+  height: 83vh;
+}
+
+.homeTitle H1 {
+  color: #382C14;
+  font-size: 80px;
+  margin: 0 1em;
+}
+
+
 .title {
   color: #382C14;
 }
@@ -103,6 +129,27 @@ body {
 .infoContainer:hover {
   cursor: pointer;
   transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.exploring {
+  background-color: #2B2222;
+  width: 133px;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 16px;
+  padding: 16px 30px;
+  text-decoration: none;
+  border-radius: 12px;
+  color: white;
+  letter-spacing: 2px;
+  transition: all .2s ease-in-out;
+}
+
+.exploring:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 #NavButton {

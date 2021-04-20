@@ -80,7 +80,7 @@ export function Profile(props) {
         </button>
         {edit ? (
           <div id="editPage">
-            <h1>Hello World</h1>
+            <h1>Edit Personal Info Below:</h1>
             Age: <input id="editAge" placeholder="10"></input>
             <br />
             Gender:{" "}

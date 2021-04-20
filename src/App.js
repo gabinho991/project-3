@@ -4,21 +4,26 @@ import { useState } from "react";
 import { Login } from "./Login.js";
 import { Landing } from "./Landing.js";
 
+import { useEffect } from "react";
+
 const socket = io();
 
 function App() {
-  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [info, changeInfo] = useState({});
-  socket.on('personal_info', (data) =>{
-      changeInfo({...data});
+  socket.on("personal_info", (data) => {
+    changeInfo({ ...data });
   });
   return (
     <div>
-      {isLoggedIn === true ? 
-        (<Landing info={info} changeInfo={changeInfo} socket={socket} setIsLoggedIn={setIsLoggedIn} />)
-        :
-        (
+      {isLoggedIn === true ? (
+        <Landing
+          info={info}
+          changeInfo={changeInfo}
+          socket={socket}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      ) : (
         <div className="wrap">
           <div className="login">
             <h1>Social Fitness</h1>
@@ -32,8 +37,7 @@ function App() {
             />
           </div>
         </div>
-        )
-      }
+      )}
     </div>
   );
 }

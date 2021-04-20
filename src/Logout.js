@@ -11,9 +11,11 @@ export function Logout(props) {
   return (
     <GoogleLogout
       clientId={clientId}
-      render={renderProps => (
+      render={(renderProps) => (
         // eslint-disable-next-line
-        <a onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</a> 
+        <a onClick={renderProps.onClick} disabled={renderProps.disabled}>
+          Logout
+        </a>
       )}
       buttonText="Logout"
       onLogoutSuccess={onLogoutSuccess}

@@ -59,21 +59,21 @@ export function NavBar(props) {
                 
                 <Switch>
                     <div className="mainBody">
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/profile">
-                        <Profile socket={socket} info={info} changeInfo={changeInfo} />
-                    </Route>
-                    <Route path="/socialMedia">
-                        <SocialMedia />
-                    </Route>
-                    <Route path="/food">
-                        <FoodSearch />
-                    </Route>
-                    <Route path="/workout">
-                        <WorkoutSearch />
-                    </Route>
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/profile">
+                            <Profile socket={socket} info={info} changeInfo={changeInfo} />
+                        </Route>
+                        <Route path="/socialMedia">
+                            <SocialMedia />
+                        </Route>
+                        <Route path="/food">
+                            <FoodSearch />
+                        </Route>
+                        <Route path="/workout">
+                            <WorkoutSearch />
+                        </Route>
                     </div>
                 </Switch>
             </Router>

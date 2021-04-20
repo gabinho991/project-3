@@ -1,10 +1,5 @@
-import * as React from 'react';
-
+import * as React from "react";
 
 export function WorkoutSearch() {
-    
-    return (
-        <h1>This feature will be available in Milestone 2</h1>    
-    );
-    
+  return <h1>This feature will be available in Milestone 2</h1>;
 }

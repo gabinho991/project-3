@@ -25,8 +25,6 @@ class User(DB.Model):
     weight = DB.Column(DB.String(4), nullable=True)
     height = DB.Column(DB.String(4), nullable=True)
     
-    social = relationship("Social", back_populates="user")
-    
     def __repr__(self):
         return '<User %r>' % self.googleId
 
@@ -49,6 +47,5 @@ class Social(DB.Model):
     post = DB.Column(DB.String(300), unique=False, nullable=True)
     date = DB.Column(DB.DateTime, unique=False, nullable=True)
     
-    User = relationship("User", back_populates="social")
     def __repr__(self):
         return '<User %r>' % self.googleId

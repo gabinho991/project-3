@@ -14,7 +14,7 @@ export function SocialMedia(props) {
     const new_post = [...post];
     new_post.push(nmessage);
     updatepost(new_post);
-    socket.emit('post');
+    socket.emit('post' , {info , nmessage});
 
     //setshow((prevShow) => !prevShow);
   }

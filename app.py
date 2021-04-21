@@ -146,10 +146,9 @@ def update_db(data):
 
 
 @SOCKETIO.on("post")
-def newpost():
+def newpost(data):
     '''save user's post in the DB'''
-    print("User made a post") # debuggign print
-    # identity = data[1]
+    print(data) # debugging print
     # new_post = data[0]
     # new_date = date.today()
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)

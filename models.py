@@ -32,7 +32,7 @@ class Social(DB.Model):
     '''
     # Unique ID from users google account
     googleId = DB.Column(DB.String(120), unique=False,
-                         nullable=False, primary_key=True)
+                         nullable=False, foreign_key=True)
     # Automatically made to null values in db
     post = DB.Column(DB.String(300), unique=False, nullable=True)
     date = DB.Column(DB.DateTime, unique=False, nullable=True)

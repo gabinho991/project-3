@@ -93,13 +93,10 @@ def on_login(data):
         "weight": current_user_info.weight,
         "height": current_user_info.height
     }
-    print(personal_data)
     SOCKETIO.emit('personal_info',
                   personal_data,
                   broadcast=True,
                   include_self=True)
-    print(models.User.query.all())
-    #socketio.emit('user_info', [givenName, familyName, imageUrl],broadcast=True,include_self=False)
 
     all_data = models.Social.query.order_by(desc('date')).all()
     lst = []
@@ -148,13 +145,19 @@ def update_db(data):
 @SOCKETIO.on("post")
 def newpost(data):
     '''save user's post in the DB'''
-    print(data) # debugging print
+    googleId=data["info"]["googleID"]
+    nmessage=data["nmessage"]
+    date=data["date"]
+    social=models.Social(googleId=googleId , post=nmessage,date=date)
+    print(googleId, nmessage)
+    DB.session.add(social)
+    DB.session.commit()
     # new_post = data[0]
     # new_date = date.today()
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
     # DB.session.add(new_post)
     # DB.session.commit()
-    # print(models.Social.query.all())
+    print(models.Social.query.all())
 
 
 if __name__ == "__main__":

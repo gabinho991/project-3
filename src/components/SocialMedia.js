@@ -12,9 +12,11 @@ export function SocialMedia(props) {
   function post_function() {
     const nmessage = message.current.value;
     const new_post = [...post];
+    //https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
+    var date = new Date().toISOString().slice(0, 10);
     new_post.push(nmessage);
     updatepost(new_post);
-    socket.emit('post' , {info , nmessage});
+    socket.emit('post' , {info , nmessage , date});
 
     //setshow((prevShow) => !prevShow);
   }

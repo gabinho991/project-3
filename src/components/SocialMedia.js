@@ -6,15 +6,15 @@ export function SocialMedia(props) {
   const [post, updatepost] = useState([]);
   const message = useRef(null);
   const [isShown, setshow] = useState(true);
-  //const socket= props.socket;
-  // const User = props.userinfos;
-
+  const socket= props.socket;
+  const info=props.info;
+  
   function post_function() {
     const nmessage = message.current.value;
     const new_post = [...post];
     new_post.push(nmessage);
     updatepost(new_post);
-    //socket.emit('post',[nmessage,User[3]]);
+    socket.emit('post');
 
     //setshow((prevShow) => !prevShow);
   }

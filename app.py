@@ -12,13 +12,13 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
 import models
-# from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
-    "://", "ql://", 1)
+# SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
+#     "://", "ql://", 1)
 APP = Flask(__name__, static_folder="./build/static")
 
 CORS = CORS(APP, resources={r"/*": {"origins": "*"}})
@@ -28,7 +28,7 @@ SOCKETIO = SocketIO(APP,
                     json=json,
                     manage_session=False)
 
-APP.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+APP.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
 # app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -146,15 +146,16 @@ def update_db(data):
 
 
 @SOCKETIO.on("post")
-def newpost(data):
+def newpost():
     '''save user's post in the DB'''
-    identity = data[1]
-    new_post = data[0]
-    new_date = date.today()
-    new_post = models.Social(googleId=identity, post=new_post, date=new_date)
-    DB.session.add(new_post)
-    DB.session.commit()
-    print(models.Social.query.all())
+    print("User made a post") # debuggign print
+    # identity = data[1]
+    # new_post = data[0]
+    # new_date = date.today()
+    # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
+    # DB.session.add(new_post)
+    # DB.session.commit()
+    # print(models.Social.query.all())
 
 
 if __name__ == "__main__":

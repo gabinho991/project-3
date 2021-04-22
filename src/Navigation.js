@@ -7,6 +7,7 @@ import { FoodSearch } from "./components/foodSearch";
 import { WorkoutSearch } from "./components/workoutSearch";
 import { Home } from "./components/home";
 import { Logout } from "./Logout.js";
+import { Favorites } from "./components/favorites";
 
 export function NavBar(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
@@ -46,6 +47,11 @@ export function NavBar(props) {
             </Link>
           </div>
           <div className="NavBtnWrap">
+            <Link id="NavButton" to="/favorites">
+              Favorites
+            </Link>
+          </div>
+          <div className="NavBtnWrap">
             <Link id="NavButton" to="/">
               <Logout setIsLoggedIn={setIsLoggedIn} />
             </Link>
@@ -68,6 +74,9 @@ export function NavBar(props) {
             </Route>
             <Route path="/workout">
               <WorkoutSearch />
+            </Route>
+            <Route path="/favorites">
+              <Favorites />
             </Route>
           </div>
         </Switch>

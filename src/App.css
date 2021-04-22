@@ -28,13 +28,13 @@ body {
   width: 100%;
   background-color: white;
   grid-column-start: 1;
-  grid-column-end: 7;
+  grid-column-end: 8;
 }
 
 .NavBar {
-    width: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
+  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
   grid-template-rows: 73px 83px;
   background-color: #FFECCC;
   position: fixed;

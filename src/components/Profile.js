@@ -1,5 +1,5 @@
 import { useState, React } from "react";
-// import '../profile.css';
+import '../profile.css';
 
 export function Profile(props) {
   const info = props.info;
@@ -7,14 +7,14 @@ export function Profile(props) {
   const [edit, changeEdit] = useState(false);
   function isEdit() {
     changeEdit(true);
-    document.getElementById("editButton").style.display = "none";
-    document.getElementById("editPage").style.display = "block";
+    //document.getElementById("editButton").style.display = "none";
+    //document.getElementById("editPage").style.display = "block";
   }
 
   function onSubmit() {
-    changeEdit(true);
-    document.getElementById("editButton").style.display = "block";
-    document.getElementById("editPage").style.display = "none";
+    changeEdit(false);
+    //document.getElementById("editButton").style.display = "block";
+    //document.getElementById("editPage").style.display = "none";
     var editAge = document.getElementById("editAge").value;
     if (editAge === "") editAge = info.age;
 
@@ -47,48 +47,44 @@ export function Profile(props) {
   });
 
   return (
-    <div className="overarching">
-      <h1>Personal Information Page</h1>
+    <div className="profilePage">
+      <h1>Personal Information</h1>
+      <div className="profileBg">
+      <div className="profileWrap">
       <div className="profile_head">
         <img src={info.imageUrl} alt="Current users profile pic" />
-        <h1>
+        <p>
           {info.givenName} {info.familyName}
-        </h1>
+        </p>
       </div>
-      <div className="profile_body">
-        <div className="boxes">
-          <h1>Age: {info.age}</h1>
-        </div>
-        <div className="boxes">
-          <h1>Gender: {info.gender}</h1>
-        </div>
-        <div className="boxes">
-          <h1>Weight: {info.weight} pounds</h1>
-        </div>
-        <div className="boxes">
-          <h1>Height: {info.height} inches</h1>
-        </div>
-        <br />
-        <button
-          id="editButton"
-          className="editButton"
-          style={{ display: "block" }}
-          onClick={() => isEdit()}
-          type="button"
-        >
-          Edit Profile
-        </button>
-        {edit ? (
-          <div id="editPage">
-            <h1>Edit Personal Info Below:</h1>
-            Age: <input id="editAge" placeholder="10"></input>
-            <br />
-            Gender:{" "}
-            <input id="editGender" placeholder="male/female/other"></input>
-            <br />
-            Weight: <input id="editWeight" placeholder="150"></input>
-            <br />
-            Height: <input id="editHeight" placeholder="65"></input>
+       {edit ? (
+        <div className="editHeader">
+          <h3>Edit Profile Below</h3>
+          <div className="profile_body">
+            <div className="boxes">
+                <p>Age: </p>
+            </div>
+            <div className="boxes">
+                <input id="editAge" defaultValue={info.age} placeholder="10" ></input>
+            </div>
+            <div className="boxes">
+                <p>Gender:{" "}</p>
+            </div>    
+            <div className="boxes">
+                <input id="editGender" defaultValue={info.gender} placeholder="male/female/other"></input>
+            </div>    
+            <div className="boxes">
+                <p>Weight: </p>
+            </div>
+            <div className="boxes">
+                <input id="editWeight" defaultValue={info.weight} placeholder="150"></input>
+            </div>
+            <div className="boxes">
+                <p>Height: </p>
+            </div>   
+            <div className="boxes">
+                <input id="editHeight" defaultValue={info.height} placeholder="65"></input>
+            </div>
             <button
               id="submitButton"
               className="submitButton"
@@ -99,10 +95,48 @@ export function Profile(props) {
               Submit Changes
             </button>
           </div>
+        </div>
         ) : (
-          <div id="editPage" style={{ display: "none" }}></div>
-        )}
-      </div>
+            <div className="profile_body">
+                <div className="boxes">
+                  <p>Age:</p>
+                </div>
+                <div className="boxes">
+                    <p>{info.age} years</p>
+                </div>
+                <div className="boxes">
+                  <p>Gender: </p>
+                </div>
+                <div className="boxes">
+                    <p>{info.gender}</p>
+                </div>
+                <div className="boxes">
+                  <p>Weight: </p>
+                </div>
+                <div className="boxes">
+                    <p>{info.weight} pounds</p>
+                </div>
+                <div className="boxes">
+                  <p>Height:</p>
+                </div>
+                <div className="boxes">
+                    <p>{info.height} inches</p>
+                </div>
+            <button
+              id="editButton"
+              className="editButton"
+              style={{ display: "block" }}
+              onClick={() => isEdit()}
+              type="button"
+            >
+              Edit Profile
+            </button>
+        </div>
+    )}
+       
+      
+    </div>
+    </div>
     </div>
   );
 }

@@ -1,31 +1,71 @@
-.overarching{
-    text-align: center;
-    background-color: black;
-    color: white;
-    margin: auto;
-    padding-bottom: 6%;
+.profilePage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileBg {
+    background-color: #55433B;
+    width: 100%;
+}
+
+.profileWrap {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    padding: 6em 10em;
+    align-items: center;
+    justify-items: center;
 }
 
 .profile_head{
-    background-color: blue;
+    background-color: #FFECCC;
     padding-top: 1%;
     padding-bottom: 1%;
     margin-bottom: 1%;
+    width: 19em;
+    border-radius: 23px;
+    display: flex;
+    height: 25em;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+}
+
+.profile_head p {
+    font-size: 1.5rem;
+}
+
+.profile_body {
+    display: grid;
+    width: 100%;
+    height: 25em;
+    align-items: center;
+    grid-template-columns: 25% 70%;
+}
+
+.editHeader {
+    width: 100%;
+    display: flex;
+    align-item: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
 }
 
 .boxes{
     float:left; 
-    background:Red;
-    width:23.65%;
-    border-style: solid;
-    border-color: yellow;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+    display: flex;
+    border-bottom: solid #FFECCC;
+    border-bottom-width: 1px;
+    padding-left: 1em;
+    color: white;
+    height: 100%;
+    align-items: center;
 }
 
 img{
-    border-radius: 50%;
-    width: 10%;
+   border-radius: 50%;
+    width: 50%;
 }
 
 div{
@@ -47,4 +87,12 @@ div{
 
 .edit{
     color: purple;
+}
+
+input {
+    background: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+    color: white;
 }

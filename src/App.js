@@ -3,8 +3,7 @@ import io from "socket.io-client";
 import { useState } from "react";
 import { Login } from "./Login.js";
 import { Landing } from "./Landing.js";
-
-import { useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const socket = io();
 
@@ -15,6 +14,7 @@ function App() {
     changeInfo({ ...data });
   });
   return (
+    <Router>
     <div>
       {isLoggedIn === true ? (
         <Landing
@@ -39,6 +39,7 @@ function App() {
         </div>
       )}
     </div>
+    </Router>
   );
 }
 

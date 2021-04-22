@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 
 import { About } from "./components/About";
 import { Profile } from "./components/Profile";
@@ -16,10 +16,15 @@ export function NavBar(props) {
   const changeInfo = props.changeInfo;
   return (
     <div className="navBarWrapper">
-      <Router>
+      
         <div className="NavBar">
           <div className="Header">
             <h1> Social Fitness </h1>
+          </div>
+          <div className="NavBtnWrap">
+            <Link id="NavButton" to="/home">
+              Home
+            </Link>
           </div>
           <div className="NavBtnWrap">
             <Link id="NavButton" to="/about">
@@ -51,15 +56,18 @@ export function NavBar(props) {
               Favorites
             </Link>
           </div>
-          <div className="NavBtnWrap">
-            <Link id="NavButton" to="/">
+          <div className="NavBtnWrap" >
+            <div id="NavButton">
               <Logout setIsLoggedIn={setIsLoggedIn} />
-            </Link>
+            </div>
           </div>
         </div>
 
         <Switch>
           <div className="mainBody">
+            <Route path="/home">
+              <Home />
+            </Route>
             <Route path="/about">
               <About />
             </Route>
@@ -80,7 +88,7 @@ export function NavBar(props) {
             </Route>
           </div>
         </Switch>
-      </Router>
+      
     </div>
   );
 }

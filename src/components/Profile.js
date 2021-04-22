@@ -123,8 +123,8 @@ export function Profile(props) {
                     <p>{info.height} inches</p>
                 </div>
             <button
+              className="submitButton"
               id="editButton"
-              className="editButton"
               style={{ display: "block" }}
               onClick={() => isEdit()}
               type="button"

@@ -72,21 +72,18 @@ div{
     align: center;
 }
 
-.button{
-  background-color: red;
-  border-style: solid;
-  border-color: yellow;
-  color: white;
-  margin-top: 1%;
-  padding: 1% 2%;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+.submitButton{
+    width: 10em;
+    height: 3em;
+    border: none;
+    background: white;
+    border-radius: 5px;
+    transition: all .2s ease-in-out;
 }
 
-.edit{
-    color: purple;
+.submitButton:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 input {

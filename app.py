@@ -156,7 +156,14 @@ def newpost(data):
     # DB.session.add(new_post)
     # DB.session.commit()
     print(models.Social.query.all())
-
+    
+@SOCKETIO.on("ingredients")
+def food_search(data):
+    """data is whatever arg you pass in your emit call on client"""
+    print(data)
+    # This emits the 'ingerdient' event from the server to all clients except for
+    # the client that emmitted the event that triggered this function
+    #SOCKETIO.emit("ingerdient", NAMES, broadcast=True, include_self=True)
 
 if __name__ == "__main__":
     SOCKETIO.run(

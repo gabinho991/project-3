@@ -86,7 +86,7 @@ div{
     transform: scale(1.05);
 }
 
-input {
+.profilePage input {
     background: none;
     border: none;
     height: 100%;

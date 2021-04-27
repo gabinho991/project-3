@@ -5,6 +5,7 @@ import { useRef } from 'react';
 export function FoodSearch(props) {
     const [recipes, setRecipes] = useState([]);
     const [nutrition, setNutrition] = useState([]);
+    const [ tableStatus, setTableStatus ] = useState(false);
     const inputRef = useRef(null);
     const socket = props.socket;
     
@@ -22,6 +23,10 @@ export function FoodSearch(props) {
           query: url,
           nutrition_query: ingredient
     });
+    };
+    
+    const showTable = () => {
+      tableStatus === true ? setTableStatus(false) : setTableStatus(true);
     };
     
     socket.on("ingredients", (data) => {
@@ -43,10 +48,18 @@ export function FoodSearch(props) {
             autoComplete="Off"
           />
           <input className="inputBtn" type="submit" value="Search" onClick={onSubmit}/>
+          
+          {recipes.length !== 0 ?
+            [tableStatus === true ? 
+            <input className="showBtn" type="submit" value="Hide Nutrition List" onClick={showTable}/> :
+            <input className="showBtn" type="submit" value="Show Nutrition List" onClick={showTable}/> ]
+            : null
+          }
         </div>
         <div className="recipeBg">
           <div className="recipeWrap">
-            {recipes !== [] &&
+            {recipes.length !== 0 ? <div className="recipeHead">Click on the picture for recipes</div> : null }
+            {recipes.length !== 0 ?
             recipes.map((recipe) => {
               return (
                 <div>
@@ -58,22 +71,33 @@ export function FoodSearch(props) {
                   </a>
                 </div>
               );
-            })}
+            }): 
+                <div className="emptyMsg">
+                  Recipes will be shown here
+                </div>
+            }
           </div>
-           <div className="">
-           <table>
-            {nutrition !== [] &&
-            nutrition.map((nutrition) => {
-              return (
-                <tr>
-                <th>{nutrition.Name}</th>
-                <th>{nutrition.Value}</th>
-                <th>{nutrition.Unit}</th>
-                </tr>
-              );
-            })}
-          </table>
-          </div>
+            {tableStatus === true ?
+             <div className="nutritionWrap">
+                 <table>
+                 <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                  <th>Unit</th>
+                 </tr>
+                  {nutrition !== [] &&
+                  nutrition.slice(1).map((nutrition) => {
+                    return (
+                      <tr>
+                        <td>{nutrition.Name}</td>
+                        <td>{nutrition.Value}</td>
+                        <td>{nutrition.Unit}</td>
+                      </tr>
+                    );
+                  })}
+                </table>
+            </div> :
+            null}
         </div>
         
       </div>

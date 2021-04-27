@@ -197,6 +197,20 @@ body {
     grid-gap: 5em;
     gap: 5em;
     justify-items: center;
+    text-align: center;
+}
+
+.emptyMsg {
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.recipeHead {
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  font-weight: bold;
 }
 
 .recipeWrap a {
@@ -242,6 +256,57 @@ body {
   cursor: pointer;
 }
 
+.showBtn {
+    height: 42px;
+    width: 13em;
+    border-radius: 50px;
+    border: none;
+    color: white;
+    background-color: #55433B;
+    letter-spacing: 2px;
+    margin-left: 1em;
+}
+
+.showBtn:hover {
+  cursor: pointer;
+}
+
 .inputWrap {
   padding-bottom: 2em;
+}
+
+.nutritionWrap {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(41%, 55%);
+    background-color: #55433B;
+    padding: 1em 0;
+    width: 50em;
+    height: 33em;
+    overflow: auto;
+    border-radius: 10px;
+    background: white;
+}
+
+.nutritionWrap h2 {
+        font-family: arial, sans-serif;
+    }
+.nutritionWrap table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 500px;
+    }
+    
+.nutritionWrap td, th {
+  border-bottom: solid wheat;
+  border-width: 2px;
+  text-align: left;
+  padding: 8px;
+}
+    
+.nutritionWrap tr:nth-child(even) {
+  background-color: #FFECCC;
 }

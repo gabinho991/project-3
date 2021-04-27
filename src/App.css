@@ -165,3 +165,83 @@ body {
   cursor: pointer;
   outline: solid #55433B;
 }
+
+
+.recipeBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .1);
+    padding: 1.5em;
+    width: 19em;
+    height: 25em;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #FFECCC;
+    transition: all .2s ease-in-out;
+}
+
+.recipeBox:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.recipeBox img {
+  border-radius: 10px;
+}
+
+.recipeWrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5em;
+    gap: 5em;
+    justify-items: center;
+}
+
+.recipeWrap a {
+  text-decoration: none;
+  color: black;
+}
+
+.recipeBg {
+   padding: 2em;
+    background-color: #55433B;
+    height: 34em;
+    overflow: auto;
+    width: 100%;
+}
+
+.recipeBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputText {
+  height: 35px;
+  width: 35em;
+  border-radius: 50px 0 0 50px;
+  border-width: 2px;
+  border-color: #55433B;
+  padding-left: 22px;
+  letter-spacing: 2px;
+}
+
+.inputBtn {
+    height: 42px;
+    width: 10em;
+    border-radius: 0 50px 50px 0;
+    border: none;
+    color: white;
+    background-color: #55433B;
+    letter-spacing: 2px;
+}
+
+.inputBtn:hover {
+  cursor: pointer;
+}
+
+.inputWrap {
+  padding-bottom: 2em;
+}

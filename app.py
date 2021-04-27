@@ -13,6 +13,7 @@ from sqlalchemy import exists
 from sqlalchemy import desc
 import models
 from dotenv import load_dotenv, find_dotenv
+import requests
 
 load_dotenv(find_dotenv())
 
@@ -36,6 +37,24 @@ DB = SQLAlchemy(APP)
 
 DB.create_all()  # likely not needed anymore
 
+def recipe(url):
+    r = requests.get(url)
+    item = r.json()["hits"]
+    recipe_list = []
+    for i in item:
+        recipe_list.append({"Label":i['recipe']['label'],"Link":i['recipe']['url'], "Image":i['recipe']['image']})
+    return recipe_list
+    
+def nutrients_list(foodName):
+    data = {"query" : foodName}
+    url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key=8hyWjccDSzBnekm4sVRYH38M4chMQgjYT4S5TAh5'
+    r = requests.post(url, json=data)
+    description = r.json()["foods"][0]["lowercaseDescription"]
+    item = r.json()["foods"][0]["foodNutrients"]
+    nutrients = [{"description": description}]
+    for i in item:
+        nutrients.append({"Name": i['nutrientName'],  "Value":str(i['value']), "Unit": i['unitName']})
+    return nutrients
 
 @APP.route("/", defaults={"filename": "index.html"})
 @APP.route("/<path:filename>")
@@ -161,9 +180,14 @@ def newpost(data):
 def food_search(data):
     """data is whatever arg you pass in your emit call on client"""
     print(data)
+    result=recipe(data['query'])
+    result2=nutrients_list(data['nutrition_query'])
+    food_dict = {'Recipe':result, 'Nutrition':result2}
+    print(result2)
+    
     # This emits the 'ingerdient' event from the server to all clients except for
     # the client that emmitted the event that triggered this function
-    #SOCKETIO.emit("ingerdient", NAMES, broadcast=True, include_self=True)
+    SOCKETIO.emit("ingredients", food_dict, broadcast=True, include_self=True)
 
 if __name__ == "__main__":
     SOCKETIO.run(

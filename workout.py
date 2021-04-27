@@ -17,7 +17,7 @@ response = requests.get(BASE_URL) #, params=params)
 # print(type(response))
 # print("helooooooooooooo\n")
 data = response.json()
-print(data)
+print(len(data["results"]))
 
 # def get_workout_data():
 #     """Returns the workout data from the api and we manually

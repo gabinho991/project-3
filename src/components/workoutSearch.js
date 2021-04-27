@@ -1,6 +1,9 @@
 import * as React from "react";
 
 export function WorkoutSearch(props) {
+    
+    //window.onload
+    
     return (
         <div>
             <h1>This feature is currently being worked on</h1>
@@ -17,7 +20,6 @@ export function WorkoutSearch(props) {
                     <option value="Shoulders">Shoulders</option>
                 </select>
             </div>
-            
         </div>
     );
 }

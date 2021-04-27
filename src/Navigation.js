@@ -15,6 +15,7 @@ export function NavBar(props) {
   const info = props.info;
   const post = props.post;
   const changeInfo = props.changeInfo;
+  
   return (
     <div className="navBarWrapper">
       

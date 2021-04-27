@@ -14,11 +14,12 @@ export function SocialMedia(props) {
     const socket=props.socket;
    
     console.log(npost);
-    const [post, updatepost] = useState({});
+    const [post, updatepost] = useState(npost);
+    let x= Object.keys(npost).length;
     
   
-  //updatepost({...npost});
-    
+    //updatepost({...npost});
+    console.log(npost);
     function post_function()
     {
         const nmessage = message.current.value;
@@ -43,7 +44,10 @@ export function SocialMedia(props) {
           <div>{Object.keys(post).map((key, i) => (
           
           <div>{post[key].map((item,index)=>(
-            <pa> {key}{item}</pa>))}
+          <div>
+            <pa1>{key}</pa1>
+            <pa> {item}</pa>
+                 </div>))}
      </div>
      
     
@@ -62,7 +66,7 @@ export function SocialMedia(props) {
     return (
         <div>
         <h1>Social Media Page </h1>
-        
+         {x}
          
         <div className="post">
          <button class="button"

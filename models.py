@@ -34,6 +34,7 @@ class Social(DB.Model):
     Social table definition
     '''
     __tablename__ = 'social'
+    
     # SQLAlchemy ORM requires a PK, can be "bypassed" but one column for the ORM must 
     # behave like a PK: 
     # https://docs.sqlalchemy.org/en/13/faq/ormconfiguration.html#how-do-i-map-a-table-that-has-no-primary-key
@@ -42,8 +43,10 @@ class Social(DB.Model):
     # to try establish a relationship with the "users" table
     post_id=DB.Column(DB.Integer, unique=True, nullable=False, primary_key=True)
     # Unique ID from users google account
-    googleId = DB.Column(DB.String(120), ForeignKey('user.googleId'))
+    #googleId = DB.Column(DB.String(120), ForeignKey('user.googleId'))
     # Automatically made to null values in db
+    username = DB.Column(DB.String(300), unique=False, nullable=True)
+    #url = DB.Column(DB.String(300), unique=False, nullable=True)
     post = DB.Column(DB.String(300), unique=False, nullable=True)
     date = DB.Column(DB.DateTime, unique=False, nullable=True)
     

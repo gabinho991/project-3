@@ -10,15 +10,21 @@ const socket = io();
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [info, changeInfo] = useState({});
+  const [post, update] = useState({});
   socket.on("personal_info", (data) => {
     changeInfo({ ...data });
   });
+  socket.on("social_tab", (data) => {
+    update({ ...post });
+  });
+  
   return (
     <Router>
     <div>
       {isLoggedIn === true ? (
         <Landing
           info={info}
+           post={post}
           changeInfo={changeInfo}
           socket={socket}
           setIsLoggedIn={setIsLoggedIn}
@@ -33,6 +39,7 @@ function App() {
               setIsLoggedIn={setIsLoggedIn}
               socket={socket}
               info={info}
+              post={post}
               changeInfo={changeInfo}
             />
           </div>

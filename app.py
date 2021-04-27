@@ -48,7 +48,18 @@ def index(filename):
 def on_connect():
     """Called when user connects"""
     print("User connected!")
+    d={}
+    all_data = models.Social.query.order_by(desc('date')).all()
 
+    for elm in all_data:
+        if elm.googleId not in d:
+            d[elm.googleId]=[elm.username,elm.url,elm.post]
+        else:
+           d[elm.googleId].append(elm.post)
+    SOCKETIO.emit('social_tab',
+                  d,
+                  broadcast=True,
+                  include_self=True)
 
 
 @SOCKETIO.on("login")
@@ -96,15 +107,6 @@ def on_login(data):
                   broadcast=True,
                   include_self=True)
 
-    all_data = models.Social.query.order_by(desc('date')).all()
-    lst = []
-    for elm in all_data:
-        lst.append(elm.post)
-    print(models.User.query.all())
-    SOCKETIO.emit('user_info',
-                  [given_name, family_name, image_url, google_id, lst],
-                  broadcast=True,
-                  include_self=False)
 
 
 @SOCKETIO.on("onSubmit")

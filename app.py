@@ -11,7 +11,6 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
-import models
 from dotenv import load_dotenv, find_dotenv
 from functions import *
 
@@ -34,6 +33,7 @@ APP.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
 APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 DB = SQLAlchemy(APP)
+import models
 
 DB.create_all()  # likely not needed anymore
 

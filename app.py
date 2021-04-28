@@ -155,7 +155,7 @@ def newpost(data):
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
     # DB.session.add(new_post)
     # DB.session.commit()
-    print(models.Social.query.all())
+    #print(models.Social.query.all())
 
 
 if __name__ == "__main__":

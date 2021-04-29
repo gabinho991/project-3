@@ -27,8 +27,6 @@ export function WorkoutSearch(props) {
                     contain[0].innerHTML = "";
                     data.results.forEach(
                         function(workout){
-                            // console.log(workout.name);
-                            // console.log(workout.description);
                             const item = document.createElement("div");
                             const head = document.createElement("div");
                             const title = document.createElement("b");
@@ -57,23 +55,12 @@ export function WorkoutSearch(props) {
                             item.appendChild(images);
                             item.appendChild(fav);
                             item.style.background = "yellow";
-                            // css(item, {"background-color": "yellow"});
                             contain[0].appendChild(item);
                             contain[0].appendChild(lineBreak);
-                            //
                         }
                     );
                 });
-            // socket.emit("getWorkouts", muscleValue);
         });
-        // console.log(yes);
-    // socket.on('tiktaktoe', (data) => {
-    //   // console.log('Tiktaktoe event received');
-    //   // console.log(data.arr);
-    //   // console.log(data.xory);
-    //   changeList([...data.arr]);
-    //   changex(data.xory);
-    // });
     }, []);
     
     return (

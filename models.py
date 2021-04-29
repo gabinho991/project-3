@@ -3,9 +3,10 @@ database table models
 '''
 # pylint: disable=E1101, C0413, W1508, R0903, W0603
 
-from app import DB
+from app import DB, marshm
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+
 
 class User(DB.Model):
     '''
@@ -73,3 +74,7 @@ class FavoriteMeal(DB.Model):
     label = DB.Column(DB.String(500), unique=False, nullable=False)
     def __repr__(self):
         return '<FavoriteMeal %r>' % self.googleId
+
+class FavoriteMealSchema(marshm.Schema):
+    class Meta:
+        fields=('link' , 'image' , 'label')

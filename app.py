@@ -4,6 +4,7 @@ our flask based app
 # pylint: disable=E1101, C0413, W1508, R0903, W0603
 
 import os
+from flask_marshmallow import Marshmallow
 from datetime import date
 from flask import Flask, send_from_directory, json
 from flask_socketio import SocketIO
@@ -33,6 +34,7 @@ APP.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
 APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 DB = SQLAlchemy(APP)
+marshm = Marshmallow(APP)
 import models
 
 
@@ -177,8 +179,10 @@ def on_favorite_meal(data):
         DB.session.add(favorite)
         DB.session.commit()
     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
+    favorite_meal_schema = models.FavoriteMealSchema(many=True)
+    result = favorite_meal_schema.dump(fav_meals)
     print(fav_meals)
-    SOCKETIO.emit("favorite_meal" , list(fav_meals), broadcast=True, include_self=True)
+    SOCKETIO.emit("favorite_meal" , result, broadcast=True, include_self=True)
     
 
 if __name__ == "__main__":

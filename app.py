@@ -29,7 +29,7 @@ SOCKETIO = SocketIO(APP,
                     json=json,
                     manage_session=False)
 
-APP.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
+APP.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 # app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 

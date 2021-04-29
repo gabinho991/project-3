@@ -12,6 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
 from dotenv import load_dotenv, find_dotenv
+from functions import *
 
 load_dotenv(find_dotenv())
 
@@ -35,7 +36,6 @@ DB = SQLAlchemy(APP)
 import models
 
 DB.create_all()  # likely not needed anymore
-
 
 @APP.route("/", defaults={"filename": "index.html"})
 @APP.route("/<path:filename>")
@@ -155,8 +155,20 @@ def newpost(data):
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
     # DB.session.add(new_post)
     # DB.session.commit()
-    #print(models.Social.query.all())
-
+    print(models.Social.query.all())
+    
+@SOCKETIO.on("ingredients")
+def food_search(data):
+    """data is whatever arg you pass in your emit call on client"""
+    print(data)
+    result=recipe(data['query'])
+    result2=nutrients_list(data['nutrition_query'])
+    food_dict = {'Recipe':result, 'Nutrition':result2}
+    print(result2)
+    
+    # This emits the 'ingerdient' event from the server to all clients except for
+    # the client that emmitted the event that triggered this function
+    SOCKETIO.emit("ingredients", food_dict, broadcast=True, include_self=True)
 
 if __name__ == "__main__":
     SOCKETIO.run(

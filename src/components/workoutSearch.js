@@ -4,6 +4,12 @@ import {useEffect} from "react";
 
 export function WorkoutSearch(props) {
     
+    function clickButton()
+    {
+        // alert("favorite was clicked");
+        console.log("favorite was clicked");
+    }
+    
     const socket = props.socket;
     //window.onload
     useEffect(() => {
@@ -28,6 +34,8 @@ export function WorkoutSearch(props) {
                             const title = document.createElement("b");
                             const body = document.createElement("div");
                             const images = document.createElement("div");
+                            var fav = document.createElement("button");
+                            const lineBreak = document.createElement("br");
                             // workout.images.forEach(
                             //     function(img){
                             //         console.log(img.image);
@@ -39,13 +47,21 @@ export function WorkoutSearch(props) {
                             // );
                             title.innerHTML = workout.name;
                             body.innerHTML = workout.description;
+                            fav.innerHTML = "Favorite";
+                            fav.onClick = function (){
+                                console.log("fav boi");
+                            };
+                            
+                            
                             head.appendChild(title);
                             item.appendChild(head);
                             item.appendChild(body);
                             item.appendChild(images);
+                            item.appendChild(fav);
                             item.style.background = "yellow";
                             // css(item, {"background-color": "yellow"});
                             contain[0].appendChild(item);
+                            contain[0].appendChild(lineBreak);
                             //
                         }
                     );

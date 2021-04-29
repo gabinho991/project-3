@@ -4,12 +4,16 @@ export function Landing(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
   const socket = props.socket;
   const info = props.info;
+  const post = props.post;
+  
+  
   const changeInfo = props.changeInfo;
   return (
     <div className="wrapper">
       <NavBar
         socket={socket}
         info={info}
+        post={post}
         changeInfo={changeInfo}
         setIsLoggedIn={setIsLoggedIn}
       />

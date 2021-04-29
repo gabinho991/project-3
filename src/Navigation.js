@@ -13,7 +13,9 @@ export function NavBar(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
   const socket = props.socket;
   const info = props.info;
+  const post = props.post;
   const changeInfo = props.changeInfo;
+  
   return (
     <div className="navBarWrapper">
       
@@ -75,7 +77,7 @@ export function NavBar(props) {
               <Profile socket={socket} info={info} changeInfo={changeInfo} />
             </Route>
             <Route path="/socialMedia">
-              <SocialMedia socket={socket} info={info} />
+              <SocialMedia socket={socket} info={info}  post={post}/>
             </Route>
             <Route path="/food">
               <FoodSearch socket={socket}/>

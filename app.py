@@ -48,7 +48,8 @@ def index(filename):
 def on_connect():
     """Called when user connects"""
     print("User connected!")
-
+    
+   
 
 
 @SOCKETIO.on("login")
@@ -91,20 +92,21 @@ def on_login(data):
         "weight": current_user_info.weight,
         "height": current_user_info.height
     }
+    
+    d={}
+    all_data = models.Social.query.order_by(desc('date')).all()
+
+    for elm in all_data:
+        if elm.username not in d:
+            d[elm.username]=[elm.post]
+        else:
+           d[elm.username].append(elm.post)
+    
     SOCKETIO.emit('personal_info',
-                  personal_data,
+                  [personal_data,d],
                   broadcast=True,
                   include_self=True)
 
-    all_data = models.Social.query.order_by(desc('date')).all()
-    lst = []
-    for elm in all_data:
-        lst.append(elm.post)
-    print(models.User.query.all())
-    SOCKETIO.emit('user_info',
-                  [given_name, family_name, image_url, google_id, lst],
-                  broadcast=True,
-                  include_self=False)
 
 
 @SOCKETIO.on("onSubmit")
@@ -143,11 +145,9 @@ def update_db(data):
 @SOCKETIO.on("post")
 def newpost(data):
     '''save user's post in the DB'''
-    googleId=data["info"]["googleID"]
-    nmessage=data["nmessage"]
-    date=data["date"]
-    social=models.Social(googleId=googleId , post=nmessage,date=date)
-    print(googleId, nmessage)
+   
+    social=models.Social(googleId=data[0] , post=data[1],username=data[2],url=data[3],date=date.today())
+   
     DB.session.add(social)
     DB.session.commit()
     # new_post = data[0]
@@ -169,6 +169,8 @@ def food_search(data):
     # This emits the 'ingerdient' event from the server to all clients except for
     # the client that emmitted the event that triggered this function
     SOCKETIO.emit("ingredients", food_dict, broadcast=True, include_self=True)
+    #print(models.Social.query.all())
+
 
 if __name__ == "__main__":
     SOCKETIO.run(

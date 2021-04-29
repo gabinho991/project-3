@@ -8,3 +8,4 @@ psycopg2-binary
 flask-marshmallow==0.14.0
 marshmallow==3.11.1
 marshmallow-sqlalchemy==0.24.3
+requests==2.25.1

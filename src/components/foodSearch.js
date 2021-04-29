@@ -15,9 +15,9 @@ export function FoodSearch(props) {
     
     const onSubmit = () => {
         const ingredient = inputRef.current.value;
-        console.log(ingredient);
+        // console.log(ingredient);
         const url = `https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&Diet=${Diet}`;
-        console.log(url);
+        // console.log(url);
         //socket.emit("ingredients",{'query':url});
         socket.emit("ingredients", {
           query: url,
@@ -25,17 +25,22 @@ export function FoodSearch(props) {
     });
     };
     
+    const onFavorite = recipe => {
+      console.log("onFavorite test click");
+      console.log(recipe);
+    }
+    
     const showTable = () => {
       tableStatus === true ? setTableStatus(false) : setTableStatus(true);
     };
     
     socket.on("ingredients", (data) => {
-      console.log(data)
+      // console.log(data)
       setRecipes(data.Recipe);
       setNutrition(data.Nutrition);
     });
     
-  console.log(recipes);
+  // console.log(recipes);
   return (
       <div className="recipeBody">
       <h1>Recipe Search</h1>
@@ -64,9 +69,9 @@ export function FoodSearch(props) {
               return (
                 <div>
                 <div className="recipeBox">
-                <img src="pre-fav.png" />
+                <button id="fav-btn" onClick={e => onFavorite(recipe)}><img src="pre-fav.png" /> </button>
+                <h3>{recipe.Label}</h3>
                   <a href={recipe.Link} target="_blank">
-                    <h3>{recipe.Label}</h3>
                     <img src={recipe.Image} alt="food"></img>
                   </a>
                   </div>

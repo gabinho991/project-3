@@ -48,9 +48,7 @@ export function WorkoutSearch(props) {
                             title.innerHTML = workout.name;
                             body.innerHTML = workout.description;
                             fav.innerHTML = "Favorite";
-                            fav.onClick = function (){
-                                console.log("fav boi");
-                            };
+                            fav.onClick = e => clickButton();
                             
                             
                             head.appendChild(title);

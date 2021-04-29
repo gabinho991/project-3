@@ -63,12 +63,13 @@ export function FoodSearch(props) {
             recipes.map((recipe) => {
               return (
                 <div>
+                <div className="recipeBox">
+                <img src="pre-fav.png" />
                   <a href={recipe.Link} target="_blank">
-                    <div className="recipeBox">
-                      <h3>{recipe.Label}</h3>
-                      <img src={recipe.Image} alt="food"></img>
-                    </div>
+                    <h3>{recipe.Label}</h3>
+                    <img src={recipe.Image} alt="food"></img>
                   </a>
+                  </div>
                 </div>
               );
             }): 

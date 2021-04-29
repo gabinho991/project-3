@@ -60,7 +60,7 @@ class FavoriteWorkout(DB.Model):
     name = DB.Column(DB.String(300), unique=True, nullable=False)
     desc = DB.Column(DB.String(500), unique=True, nullable=False)
     muscle_group = DB.Column(DB.String(100), unique=True, nullable=False)
-    equipment_name = DB.Column(DB.String(120), unique=True, nullable=False)
+    # equipment_name = DB.Column(DB.String(120), unique=True, nullable=False)
     def __repr__(self):
         return '<FavoriteWorkout %r>' % self.googleId
 
@@ -68,8 +68,8 @@ class FavoriteMeal(DB.Model):
     __tablename__ = 'favoritemeal'
     meal_id=DB.Column(DB.Integer, unique=True, nullable=False, primary_key=True)
     googleId = DB.Column(DB.String(120), ForeignKey('user.googleId'))
-    link = DB.Column(DB.String(500), unique=True, nullable=False)
-    image = DB.Column(DB.String(500), unique=True, nullable=False)
-    label = DB.Column(DB.String(500), unique=True, nullable=False)
+    link = DB.Column(DB.String(500), unique=False, nullable=False)
+    image = DB.Column(DB.String(500), unique=False, nullable=False)
+    label = DB.Column(DB.String(500), unique=False, nullable=False)
     def __repr__(self):
         return '<FavoriteMeal %r>' % self.googleId

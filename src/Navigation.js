@@ -15,7 +15,7 @@ export function NavBar(props) {
   const info = props.info;
   const post = props.post;
   const changeInfo = props.changeInfo;
-  
+  const mealFavorites=props.mealFavorites;
   return (
     <div className="navBarWrapper">
       
@@ -80,13 +80,13 @@ export function NavBar(props) {
               <SocialMedia socket={socket} info={info}  post={post}/>
             </Route>
             <Route path="/food">
-              <FoodSearch socket={socket}/>
+              <FoodSearch info={info} socket={socket}/>
             </Route>
             <Route path="/workout">
               <WorkoutSearch />
             </Route>
             <Route path="/favorites">
-              <Favorites socket={socket} />
+              <Favorites info={info} mealFavorites={mealFavorites} socket={socket} />
             </Route>
           </div>
         </Switch>

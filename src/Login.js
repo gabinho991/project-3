@@ -12,7 +12,6 @@ export function Login(props) {
 
   const onLoginSuccess = (data) => {
     socket.emit("login", data);
-    console.log(data);
     setIsLoggedIn(true);
     changeInfo({ ...data });
     history.push("/home");

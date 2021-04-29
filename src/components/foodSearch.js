@@ -8,11 +8,11 @@ export function FoodSearch(props) {
     const [ tableStatus, setTableStatus ] = useState(false);
     const inputRef = useRef(null);
     const socket = props.socket;
+    const info = props.info;
     // TODO:need to query user favorites and check if they're already favorited to switch icons
     const APP_ID = "bd586d90";
     const APP_KEY = "b6e3ba52f5b9a13eb87d67e335cc4e1d";
     const Diet = 'low-fat';
-    
     const onSubmit = () => {
         const ingredient = inputRef.current.value;
         const url = `https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&Diet=${Diet}`;
@@ -24,9 +24,8 @@ export function FoodSearch(props) {
     };
     
     const onFavorite = recipe => {
-      console.log(recipe);
-      socket.emit("favorite_meal" , recipe);
-    }
+      socket.emit("favorite_meal" , {recipe , info});
+    };
     
     const showTable = () => {
       tableStatus === true ? setTableStatus(false) : setTableStatus(true);

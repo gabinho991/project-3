@@ -35,6 +35,7 @@ APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 DB = SQLAlchemy(APP)
 import models
 
+
 DB.create_all()  # likely not needed anymore
 
 @APP.route("/", defaults={"filename": "index.html"})
@@ -59,7 +60,6 @@ def on_login(data):
     image_url = str(data["profileObj"]["imageUrl"])
     given_name = str(data["profileObj"]["givenName"])
     family_name = str(data["profileObj"]["familyName"])
-
     user = models.User(googleId=google_id,
                        email=email,
                        imageUrl=image_url,
@@ -166,9 +166,20 @@ def food_search(data):
     
 @SOCKETIO.on("favorite_meal")
 def on_favorite_meal(data):
-    SOCKETIO.emit("favorite" , data, broadcast=True, include_self=True)
+    # current_user_info = DB.session.query(models.User).filter_by(googleId=google_id).first()
+    image_url = data["recipe"]["Image"]
+    label=data["recipe"]["Label"]
+    link=str(data["recipe"]["Link"])
+    google_id=(data["info"]["googleID"])
+    ret = DB.session.query(exists().where(models.FavoriteMeal.label == label)).scalar()
+    if ret is False:
+        favorite=models.FavoriteMeal(googleId=google_id, link=link,image=image_url, label=label)
+        DB.session.add(favorite)
+        DB.session.commit()
+    fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
+    print(fav_meals)
+    SOCKETIO.emit("favorite_meal" , list(fav_meals), broadcast=True, include_self=True)
     
-    print(data)
 
 if __name__ == "__main__":
     SOCKETIO.run(

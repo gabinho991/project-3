@@ -1,13 +1,4 @@
-import {useEffect, React} from "react";
-
-// window.onload = () => {
-//         alert("Hello World!!!!!!!!");
-//         const yes = document.getElementById("muscleSearch");
-//         console.log(yes);
-//         // document.getElementById("muscleSearch").addEventListener('click', () => {
-//         //     console.log("hello bitches");
-//         // });
-//     };
+import * as React from "react";
 
 export function WorkoutSearch(props) {
     

@@ -169,8 +169,6 @@ def food_search(data):
     # This emits the 'ingerdient' event from the server to all clients except for
     # the client that emmitted the event that triggered this function
     SOCKETIO.emit("ingredients", food_dict, broadcast=True, include_self=True)
-    #print(models.Social.query.all())
-
 
 if __name__ == "__main__":
     SOCKETIO.run(

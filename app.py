@@ -50,8 +50,6 @@ def on_connect():
     print("User connected!")
     
    
-
-
 @SOCKETIO.on("login")
 def on_login(data):
     ''' Called when user successfully logs in, everything is
@@ -79,7 +77,7 @@ def on_login(data):
         # Debugging print, for anyone needing only to query, this is how
         # you do it, none of the other code needs to be altered, if you do need to alter it, please
         # be mindful of merge conflicts and try minimize them
-    print(DB.session.query(models.User).filter_by(googleId=google_id).all())
+    # print(DB.session.query(models.User).filter_by(googleId=google_id).all())
     current_user_info = DB.session.query(
         models.User).filter_by(googleId=google_id).first()
     personal_data = {
@@ -108,11 +106,10 @@ def on_login(data):
                   include_self=True)
 
 
-
 @SOCKETIO.on("onSubmit")
 def update_db(data):
     '''called when the user submits changes'''
-    print(data)
+    # print(data)
     # print(data.googleID)
     # socketio.emit('personal_info', data, broadcast=True, include_self=True)
     modified_user = DB.session.query(
@@ -135,7 +132,7 @@ def update_db(data):
         "weight": current_user_info.weight,
         "height": current_user_info.height
     }
-    print("Updated Information: ", personal_data)
+
     SOCKETIO.emit('personal_info',
                   personal_data,
                   broadcast=True,
@@ -155,20 +152,23 @@ def newpost(data):
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
     # DB.session.add(new_post)
     # DB.session.commit()
-    print(models.Social.query.all())
+    # print(models.Social.query.all())
     
 @SOCKETIO.on("ingredients")
 def food_search(data):
     """data is whatever arg you pass in your emit call on client"""
-    print(data)
     result=recipe(data['query'])
     result2=nutrients_list(data['nutrition_query'])
     food_dict = {'Recipe':result, 'Nutrition':result2}
-    print(result2)
-    
     # This emits the 'ingerdient' event from the server to all clients except for
     # the client that emmitted the event that triggered this function
     SOCKETIO.emit("ingredients", food_dict, broadcast=True, include_self=True)
+    
+@SOCKETIO.on("favorite_meal")
+def on_favorite_meal(data):
+    SOCKETIO.emit("favorite" , data, broadcast=True, include_self=True)
+    
+    print(data)
 
 if __name__ == "__main__":
     SOCKETIO.run(

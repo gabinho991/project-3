@@ -86,7 +86,7 @@ export function NavBar(props) {
               <WorkoutSearch />
             </Route>
             <Route path="/favorites">
-              <Favorites />
+              <Favorites socket={socket} />
             </Route>
           </div>
         </Switch>

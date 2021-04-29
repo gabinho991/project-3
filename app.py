@@ -181,10 +181,16 @@ def on_favorite_meal(data):
     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
     favorite_meal_schema = models.FavoriteMealSchema(many=True)
     result = favorite_meal_schema.dump(fav_meals)
-    print(fav_meals)
     SOCKETIO.emit("favorite_meal" , result, broadcast=True, include_self=True)
     
-
+# @SOCKETIO.on("user_meal_favorites")
+# def get_meal_favorites(data):
+#     google_id=data["googleId"]
+#     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
+#     favorite_meal_schema = models.FavoriteMealSchema(many=True)
+#     result = favorite_meal_schema.dump(fav_meals)
+#     SOCKETIO.emit("user_meal_favorites" , result, broadcast=True, include_self=True)
+    
 if __name__ == "__main__":
     SOCKETIO.run(
         APP,

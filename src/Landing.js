@@ -5,7 +5,8 @@ export function Landing(props) {
   const socket = props.socket;
   const info = props.info;
   const post = props.post;
-
+  const mealFavorites=props.mealFavorites;
+  
   const changeInfo = props.changeInfo;
   return (
     <div className="wrapper">
@@ -15,6 +16,7 @@ export function Landing(props) {
         post={post}
         changeInfo={changeInfo}
         setIsLoggedIn={setIsLoggedIn}
+        mealFavorites={mealFavorites}
       />
     </div>
   );

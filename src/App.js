@@ -11,9 +11,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [info, changeInfo] = useState({});
   const [post, updatepost] = useState({});
+  const [mealFavorites, updateMealFavorites] = useState({});
+
   socket.on("personal_info", (data) => {
     changeInfo({ ...data[0] });
     updatepost({ ...data[1] });
+  });
+  
+  socket.on("favorite_meal", (data) => {
+    updateMealFavorites({...data})
   });
   //socket.on("social_tab", (data) => {
   // updatepost({ ...data});
@@ -29,6 +35,7 @@ function App() {
             changeInfo={changeInfo}
             socket={socket}
             setIsLoggedIn={setIsLoggedIn}
+            mealFavorites={mealFavorites}
           />
         ) : (
           <div className="wrap">
@@ -44,9 +51,9 @@ function App() {
                 changeInfo={changeInfo}
               />
             </div>
-          </div>
-        )}
-      </div>
+          )
+          };
+        </div>
     </Router>
   );
 }

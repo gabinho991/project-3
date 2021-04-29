@@ -4,14 +4,15 @@ import {useEffect} from "react";
 
 export function WorkoutSearch(props) {
     
+    const socket = props.socket;
+    
+    //use this function to set the information through socket to be added to favorite table
     function clickButton()
     {
         // alert("favorite was clicked");
         console.log("favorite was clicked");
     }
     
-    const socket = props.socket;
-    //window.onload
     useEffect(() => {
         document.getElementById("muscleSearch").addEventListener("click", () => {
             console.log("button was clicked");

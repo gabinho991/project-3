@@ -1,5 +1,6 @@
 # Social Fitness
 
+<<<<<<< HEAD
 ## Group Member Names
 
 - Glorian Kosi (gk349@njit.edu)
@@ -21,6 +22,26 @@ We aim to deliver a real-time fitness app accessible from the browser. This web 
 2. **Social Media Tab:** The social media tab allows users to create text-based post and share it with others who joins it. Users can share their personal thoughts, workout routines, personal favorite recipes and also will be able to comment on each other's post.
 3. **Food Search Tab:** The food search tab allows users to search for a ingredient. Once a ingredient is searched it will show the nutrition values of that ingredient and also display healthy recipes related to the ingredient searched. This tab also allows user to favorite
    their recipe searched for future use.
+=======
+
+## Group Member Names
+-   Glorian Kosi (gk349@njit.edu)
+-   Gabin Ntankeu (gnn3@njit.edu)
+-   Chirag Patel (cyp5@njit.edu)
+-   Hemanth Velan (hv72@njit.edu)
+
+## Heroku App
+[Social Fitness](https://project-3-njit.herokuapp.com/)
+
+## Description
+We aim to deliver a real-time fitness app accessible from the browser. This web app provides a secure Google login that allows users to identify themselves, and users will be able to search for workouts, nutrition information of a particular ingredient healthy meals and even log their current fitness progress.
+
+## Features
+1. **Profile Tab:** The profile tab allows user to store their current age, weight, height and gender in their profile and also make changes to it if necessary.
+2. **Social Media Tab:** The social media tab allows users to create text-based post and share it with others who joins it. Users can share their personal thoughts, workout routines, personal favorite recipes and also will be able to comment on each other's post.
+3. **Food Search Tab:** The food search tab allows users to search for a ingredient. Once a ingredient is searched it will show the nutrition values of that ingredient and also display healthy recipes related to the ingredient searched. This tab also allows user to favorite
+their recipe searched for future use.
+>>>>>>> 67054bf8ccd5f373b04154a1ea692750ebef0f00
 4. **Workout Search Tab:** The workout search tab allows users to search for a workout. Once a workout is searched it will show different exercise related to that workout and also has the to option to favorite that workout for future use.
 
 ## Installation
@@ -36,6 +57,7 @@ We aim to deliver a real-time fitness app accessible from the browser. This web 
 1. Run `echo "DANGEROUSLY_DISABLE_HOST_CHECK=true" > .env.development.local` in the project directory
 
 ## Adding Google Login to your App
+<<<<<<< HEAD
 
 Steps:
 
@@ -44,6 +66,14 @@ Steps:
 3. Click **Create credentials > OAuth client ID**.
 4. Select the **Web application** type.
 5. Name your OAuth 2.0 client and click **Create**
+=======
+Steps:
+1. We need to create an application in the Google developer console. It provides `clientId` is used to identify your application for authentication details. Follow the below steps to get the client ID.
+2. Go to the [Credentials Page](https://console.cloud.google.com/projectselector2/apis/credentials?pli=1&supportedpurview=project) ( if you are new, then  [create a project](https://console.developers.google.com/projectcreate)  and follow these steps).
+3. Click **Create credentials > OAuth client ID**.
+4. Select the **Web application** type.
+5.  Name your OAuth 2.0 client and click **Create**
+>>>>>>> 67054bf8ccd5f373b04154a1ea692750ebef0f00
 
 ## Databases setup
 

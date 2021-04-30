@@ -18,6 +18,7 @@ export function SocialMedia(props) {
   function post_function() {
     const nmessage = message.current.value;
     const new_post = { ...post };
+    document.getElementById("output").value = "";
     if (info.familyName + " " + info.givenName in new_post) {
       new_post[info.familyName + " " + info.givenName].push(nmessage);
     } else {
@@ -41,9 +42,11 @@ export function SocialMedia(props) {
         {Object.keys(post).map((key, i) => (
           <div>
             {post[key].map((item, index) => (
-              <div>
-                <pa1>{key}</pa1>
-                <pa> {item}</pa>
+              <div style={{margin: "3em 0"}}>
+                <p>{key}</p>
+                <div className="chatBox">
+                  <pre>{item}</pre>
+                </div>
               </div>
             ))}
           </div>
@@ -57,44 +60,30 @@ export function SocialMedia(props) {
   }
 
   return (
-    <div>
+    <div className="socialMediaWrap">
       <h1>Social Media Page </h1>
-      {x}
-
-      <div className="post">
-        <button
-          class="button"
-          type="button"
-          onClick={() => {
-            post_button();
-          }}
-        >
-          {" "}
-          Click here to add a post
-        </button>
-
-        {!isShown ? (
-          <div>
-            <textarea
-              ref={message}
-              placeholder="Type message.."
-              rows="6"
-              cols="50"
-            />
-            <button
-              class="button2"
-              type="button"
-              onClick={() => {
-                post_function();
-              }}
-            >
-              {" "}
-              Post
-            </button>
-          </div>
-        ) : null}
+      
+      <div className="socialBody">
+        <div className="messageBody">
+          <textarea
+            ref={message}
+            placeholder="Type message.."
+            rows="6"
+            cols="50"
+            id="output"
+          />
+          <button
+            class="button2"
+            type="button"
+            onClick={() => {
+              post_function();
+            }}
+          >
+            POST
+          </button>
+        </div>
         <div class="userpost">
-          <div>{foo()}</div>
+          <div style={{overflow: "auto", width: "100%"}}>{foo()}</div>
         </div>
       </div>
     </div>

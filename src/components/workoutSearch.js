@@ -45,7 +45,7 @@ export function WorkoutSearch(props) {
                             //     }
                             // );
                             title.innerHTML = workout.name;
-                            // body.innerHTML = workout.description;
+                            body.innerHTML = workout.description;
                             // fav.innerHTML = "Favorite";
                             // fav.onClick = e => clickButton();
                             

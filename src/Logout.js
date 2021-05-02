@@ -1,7 +1,6 @@
 import { GoogleLogout } from "react-google-login";
 import { useHistory } from "react-router-dom";
 
-
 const clientId =
   "815983674480-urois11u2eirc0skojd2f8o6v8vjtr8m.apps.googleusercontent.com";
 
@@ -10,7 +9,7 @@ export function Logout(props) {
   const history = useHistory();
   const onLogoutSuccess = () => {
     setIsLoggedIn(false);
-    history.push('/login');
+    history.push("/login");
   };
   return (
     <GoogleLogout

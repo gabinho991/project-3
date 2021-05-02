@@ -16,7 +16,7 @@ export function Login(props) {
     changeInfo({ ...data });
     history.push("/home");
   };
-  
+
   return (
     <GoogleLogin
       clientId={clientId}

@@ -2,14 +2,13 @@ body {
   background-image: url(./wallpaperflare.com_wallpaper.jpg);
   background-size: cover;
   background-attachment: fixed;
-  
 }
 .wrap {
   display: flex;
   height: 100vh;
   align-items: center;
   justify-content: center;
-  }
+}
 
 .login {
   display: flex;
@@ -18,7 +17,8 @@ body {
   justify-content: center;
   height: 17em;
   width: 34em;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 .Header {
@@ -36,7 +36,7 @@ body {
   display: grid;
   grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   grid-template-rows: 73px 83px;
-  background-color: #FFECCC;
+  background-color: #ffeccc;
   position: fixed;
   top: 0;
   height: 10em;
@@ -53,7 +53,7 @@ body {
 }
 
 .NavBtnWrap {
-   display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -61,7 +61,7 @@ body {
 .about_body {
   display: grid;
   margin: 0 2em;
-  background-color: #55433B;
+  background-color: #55433b;
   width: 100%;
   padding: 2em;
   justify-items: center;
@@ -84,12 +84,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   width: 19em;
   height: 25em;
   border-radius: 20px;
-  background-color: #FFECCC;
-  transition: all .2s ease-in-out;
+  background-color: #ffeccc;
+  transition: all 0.2s ease-in-out;
 }
 
 .infoContainer p {
@@ -116,24 +116,24 @@ body {
 }
 
 .homeTitle H1 {
-  color: #382C14;
+  color: #382c14;
   font-size: 80px;
   margin: 0 1em;
 }
 
-
 .title {
-  color: #382C14;
+  color: #382c14;
 }
 
 .infoContainer:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .exploring {
-  background-color: #2B2222;
+  background-color: #2b2222;
   width: 133px;
   height: -moz-fit-content;
   height: fit-content;
@@ -143,48 +143,49 @@ body {
   border-radius: 12px;
   color: white;
   letter-spacing: 2px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .exploring:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 #NavButton {
-    background-color: white;
-    width: 45%;
-    height: fit-content;
-    font-size: 13px;
-    padding: 5px 30px;
-    text-decoration: none;
+  background-color: white;
+  width: 45%;
+  height: fit-content;
+  font-size: 13px;
+  padding: 5px 30px;
+  text-decoration: none;
 }
 
 #NavButton:hover {
   cursor: pointer;
-  outline: solid #55433B;
+  outline: solid #55433b;
 }
 
-
 .recipeBox {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0, 0, 0, .1);
-    padding: 1.5em;
-    width: 19em;
-    height: 25em;
-    border-radius: 20px;
-    text-align: center;
-    background-color: #FFECCC;
-    transition: all .2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  width: 19em;
+  height: 25em;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #ffeccc;
+  transition: all 0.2s ease-in-out;
 }
 
 .recipeBox:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .recipeBox img {
@@ -192,12 +193,12 @@ body {
 }
 
 .recipeWrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 5em;
-    gap: 5em;
-    justify-items: center;
-    text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5em;
+  gap: 5em;
+  justify-items: center;
+  text-align: center;
 }
 
 .emptyMsg {
@@ -219,11 +220,11 @@ body {
 }
 
 .recipeBg {
-   padding: 2em;
-    background-color: #55433B;
-    height: 34em;
-    overflow: auto;
-    width: 100%;
+  padding: 2em;
+  background-color: #55433b;
+  height: 34em;
+  overflow: auto;
+  width: 100%;
 }
 
 .recipeBody {
@@ -237,19 +238,19 @@ body {
   width: 35em;
   border-radius: 50px 0 0 50px;
   border-width: 2px;
-  border-color: #55433B;
+  border-color: #55433b;
   padding-left: 22px;
   letter-spacing: 2px;
 }
 
 .inputBtn {
-    height: 42px;
-    width: 10em;
-    border-radius: 0 50px 50px 0;
-    border: none;
-    color: white;
-    background-color: #55433B;
-    letter-spacing: 2px;
+  height: 42px;
+  width: 10em;
+  border-radius: 0 50px 50px 0;
+  border: none;
+  color: white;
+  background-color: #55433b;
+  letter-spacing: 2px;
 }
 
 .inputBtn:hover {
@@ -257,14 +258,14 @@ body {
 }
 
 .showBtn {
-    height: 42px;
-    width: 13em;
-    border-radius: 50px;
-    border: none;
-    color: white;
-    background-color: #55433B;
-    letter-spacing: 2px;
-    margin-left: 1em;
+  height: 42px;
+  width: 13em;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  background-color: #55433b;
+  letter-spacing: 2px;
+  margin-left: 1em;
 }
 
 .showBtn:hover {
@@ -276,37 +277,38 @@ body {
 }
 
 .nutritionWrap {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(41%, 55%);
-    background-color: #55433B;
-    padding: 1em 0;
-    width: 50em;
-    height: 33em;
-    overflow: auto;
-    border-radius: 10px;
-    background: white;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(41%, 55%);
+  background-color: #55433b;
+  padding: 1em 0;
+  width: 50em;
+  height: 33em;
+  overflow: auto;
+  border-radius: 10px;
+  background: white;
 }
 
 .nutritionWrap h2 {
-        font-family: arial, sans-serif;
-    }
+  font-family: arial, sans-serif;
+}
 .nutritionWrap table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 500px;
-    }
-    
-.nutritionWrap td, th {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 500px;
+}
+
+.nutritionWrap td,
+th {
   border-bottom: solid wheat;
   border-width: 2px;
   text-align: left;
   padding: 8px;
 }
-    
+
 .nutritionWrap tr:nth-child(even) {
-  background-color: #FFECCC;
+  background-color: #ffeccc;
 }

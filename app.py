@@ -12,14 +12,16 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
-# from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv, find_dotenv
 from functions import *
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
-    "://", "ql://", 1)
+# SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
+#     "://", "ql://", 1)
+
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 APP = Flask(__name__, static_folder="./build/static")
 
 CORS = CORS(APP, resources={r"/*": {"origins": "*"}})

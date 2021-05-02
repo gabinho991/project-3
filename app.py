@@ -97,7 +97,10 @@ def on_login(data):
     
     d={}
     all_data = models.Social.query.order_by(desc('date')).all()
-
+    fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
+    favorite_meal_schema = models.FavoriteMealSchema(many=True)
+    favorite_meal_result = favorite_meal_schema.dump(fav_meals)
+    
     for elm in all_data:
         if elm.username not in d:
             d[elm.username]=[elm.post]
@@ -105,7 +108,7 @@ def on_login(data):
            d[elm.username].append(elm.post)
     
     SOCKETIO.emit('personal_info',
-                  [personal_data,d],
+                  [personal_data,d , favorite_meal_result],
                   broadcast=True,
                   include_self=True)
 

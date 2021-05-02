@@ -16,10 +16,11 @@ function App() {
   socket.on("personal_info", (data) => {
     changeInfo({ ...data[0] });
     updatepost({ ...data[1]});
+    updateMealFavorites({...data[2]});
   });
   
   socket.on("favorite_meal", (data) => {
-    updateMealFavorites({...data})
+    updateMealFavorites({...data});
   });
   //socket.on("social_tab", (data) => {
    // updatepost({ ...data});

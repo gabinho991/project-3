@@ -79,7 +79,7 @@ export function NavBar(props) {
               <SocialMedia socket={socket} info={info}  post={post}/>
             </Route>
             <Route path="/food">
-              <FoodSearch info={info} socket={socket}/>
+              <FoodSearch mealFavorites={mealFavorites}  info={info} socket={socket}/>
             </Route>
             <Route path="/workout">
               <WorkoutSearch />

@@ -6,6 +6,15 @@ export function FoodSearch(props) {
     const [recipes, setRecipes] = useState([]);
     const [nutrition, setNutrition] = useState([]);
     const [ tableStatus, setTableStatus ] = useState(false);
+    const mealFavorites = props.mealFavorites;
+    var currentMealFavorites = [];
+    
+    // This is an optimization issue as mealFavorites gets very large, if some time left, try optimize it
+    // but it def requires changing structure on frontend and backend.
+    Object.keys(mealFavorites).map(recipe => { 
+      currentMealFavorites.push(mealFavorites[recipe].label);
+    });
+    
     const inputRef = useRef(null);
     const socket = props.socket;
     const info = props.info;
@@ -13,6 +22,8 @@ export function FoodSearch(props) {
     const APP_ID = "bd586d90";
     const APP_KEY = "b6e3ba52f5b9a13eb87d67e335cc4e1d";
     const Diet = 'low-fat';
+    
+
     const onSubmit = () => {
         const ingredient = inputRef.current.value;
         const url = `https://api.edamam.com/search?q=${ingredient}&app_id=${APP_ID}&app_key=${APP_KEY}&Diet=${Diet}`;
@@ -36,7 +47,7 @@ export function FoodSearch(props) {
       setNutrition(data.Nutrition);
     });
     
-  // console.log(recipes);
+  console.log(currentMealFavorites);
   return (
     <div className="recipeBody">
       <h1>Recipe Search</h1>
@@ -85,7 +96,12 @@ export function FoodSearch(props) {
               return (
                 <div>
                 <div className="recipeBox">
+                { (currentMealFavorites.includes(recipe.Label) === false) ?
                 <button id="fav-btn" onClick={e => onFavorite(recipe)}><img src="pre-fav.png" /> </button>
+                :  
+                <button id="fav-btn" onClick={e => onFavorite(recipe)}><img src="post-fav.png" /> </button>
+                }
+                
                 <h3>{recipe.Label}</h3>
                   <a href={recipe.Link} target="_blank">
                     <img src={recipe.Image} alt="food"></img>

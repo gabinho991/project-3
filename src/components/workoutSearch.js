@@ -1,8 +1,13 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+<<<<<<< HEAD
 import $ from 'jquery';
 
+=======
+import $ from "jquery";
+//force push
+>>>>>>> 133b8132c2e640bb02db36227b6ca28a8d63f114
 export function WorkoutSearch(props) {
   const socket = props.socket;
   const [workouts, setWorkouts] = useState([]);

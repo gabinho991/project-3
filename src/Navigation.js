@@ -15,7 +15,7 @@ export function NavBar(props) {
   const info = props.info;
   const post = props.post;
   const changeInfo = props.changeInfo;
-  const mealFavorites=props.mealFavorites;
+  const mealFavorites = props.mealFavorites;
   return (
     <div className="navBarWrapper">
       <div className="NavBar">
@@ -64,32 +64,39 @@ export function NavBar(props) {
         </div>
       </div>
 
-        <Switch>
-          <div className="mainBody">
-            <Route path="/home">
-              <Home />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/profile">
-              <Profile socket={socket} info={info} changeInfo={changeInfo} />
-            </Route>
-            <Route path="/socialMedia">
-              <SocialMedia socket={socket} info={info}  post={post}/>
-            </Route>
-            <Route path="/food">
-              <FoodSearch info={info} socket={socket}/>
-            </Route>
-            <Route path="/workout">
-              <WorkoutSearch />
-            </Route>
-            <Route path="/favorites">
-              <Favorites info={info} mealFavorites={mealFavorites} socket={socket} />
-            </Route>
-          </div>
-        </Switch>
-      
+      <Switch>
+        <div className="mainBody">
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/profile">
+            <Profile socket={socket} info={info} changeInfo={changeInfo} />
+          </Route>
+          <Route path="/socialMedia">
+            <SocialMedia socket={socket} info={info} post={post} />
+          </Route>
+          <Route path="/food">
+            <FoodSearch
+              mealFavorites={mealFavorites}
+              info={info}
+              socket={socket}
+            />
+          </Route>
+          <Route path="/workout">
+            <WorkoutSearch socket={socket} info={info} />
+          </Route>
+          <Route path="/favorites">
+            <Favorites
+              info={info}
+              mealFavorites={mealFavorites}
+              socket={socket}
+            />
+          </Route>
+        </div>
+      </Switch>
     </div>
   );
 }

@@ -13,7 +13,7 @@ function App() {
   const [post, updatepost] = useState({});
   const [mealFavorites, updateMealFavorites] = useState({});
   const [workoutFavorites, updateWorkoutFavorites] = useState({});
-  
+
   socket.on("personal_info", (data) => {
     changeInfo({ ...data[0] });
     updatepost({ ...data[1] });

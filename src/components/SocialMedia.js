@@ -42,7 +42,7 @@ export function SocialMedia(props) {
         {Object.keys(post).map((key, i) => (
           <div>
             {post[key].map((item, index) => (
-              <div style={{margin: "3em 0"}}>
+              <div style={{ margin: "3em 0" }}>
                 <p>{key}</p>
                 <div className="chatBox">
                   <pre>{item}</pre>
@@ -62,7 +62,7 @@ export function SocialMedia(props) {
   return (
     <div className="socialMediaWrap">
       <h1>Social Media Page </h1>
-      
+
       <div className="socialBody">
         <div className="messageBody">
           <textarea
@@ -83,7 +83,7 @@ export function SocialMedia(props) {
           </button>
         </div>
         <div class="userpost">
-          <div style={{overflow: "auto", width: "100%"}}>{foo()}</div>
+          <div style={{ overflow: "auto", width: "100%" }}>{foo()}</div>
         </div>
       </div>
     </div>

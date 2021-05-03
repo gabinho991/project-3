@@ -6,8 +6,8 @@ export function Landing(props) {
   const info = props.info;
   const post = props.post;
   const mealFavorites = props.mealFavorites;
-  const workoutFavorites=props.workoutFavorites;
-  
+  const workoutFavorites = props.workoutFavorites;
+
   const changeInfo = props.changeInfo;
   return (
     <div className="wrapper">

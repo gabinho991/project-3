@@ -54,19 +54,6 @@ def on_connect():
     
    
 @SOCKETIO.on("login")
-
-
-#def getpost():
-    #d={}
-    #all_data = models.Social.query.order_by(desc('date')).all()
-
-    #for elm in all_data:
-        #if elm.username not in d:
-            #d[elm.username]=[elm.post]
-        #else:
-          # d[elm.username].append(elm.post)
-    #return d
-
 def on_login(data):
     ''' Called when user successfully logs in, everything is
     converted to string because its easier to manage in the DB '''
@@ -127,7 +114,6 @@ def on_login(data):
 def update_db(data):
     '''called when the user submits changes'''
     # print(data)
-    # print(data.googleID)
     # socketio.emit('personal_info', data, broadcast=True, include_self=True)
     modified_user = DB.session.query(
         models.User).filter_by(googleId=data["googleID"]).first()
@@ -149,10 +135,10 @@ def update_db(data):
         "weight": current_user_info.weight,
         "height": current_user_info.height
     }
-
-    SOCKETIO.emit('personal_info',
+    print(personal_data)
+    SOCKETIO.emit('profile_update',
                   personal_data,
-                  broadcast=True,
+                  broadcast=False,
                   include_self=True)
 
 

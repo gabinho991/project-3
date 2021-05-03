@@ -15,50 +15,50 @@ function App() {
 
   socket.on("personal_info", (data) => {
     changeInfo({ ...data[0] });
-    updatepost({ ...data[1]});
-    updateMealFavorites({...data[2]});
+    updatepost({ ...data[1] });
+    updateMealFavorites({ ...data[2] });
   });
-  
+
   socket.on("favorite_meal", (data) => {
-    updateMealFavorites({...data});
+    updateMealFavorites({ ...data });
   });
-  
+
   socket.on("remove_favorite_meal", (data) => {
-    updateMealFavorites({...data});
+    updateMealFavorites({ ...data });
   });
   //socket.on("social_tab", (data) => {
-   // updatepost({ ...data});
+  // updatepost({ ...data});
   //});
-  
+
   return (
     <Router>
-    <div>
-      {isLoggedIn === true ? (
-        <Landing
-          info={info}
-          post={post}
-          changeInfo={changeInfo}
-          socket={socket}
-          setIsLoggedIn={setIsLoggedIn}
-          mealFavorites={mealFavorites}
-        />
-      ) : (
-        <div className="wrap">
-          <div className="login">
-            <h1>Social Fitness</h1>
-            <h5>Please login and start journey with us!</h5>
-            <Login
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              socket={socket}
-              info={info}
-              post={post}
-              changeInfo={changeInfo}
-            />
+      <div>
+        {isLoggedIn === true ? (
+          <Landing
+            info={info}
+            post={post}
+            changeInfo={changeInfo}
+            socket={socket}
+            setIsLoggedIn={setIsLoggedIn}
+            mealFavorites={mealFavorites}
+          />
+        ) : (
+          <div className="wrap">
+            <div className="login">
+              <h1>Social Fitness</h1>
+              <h5>Please login and start journey with us!</h5>
+              <Login
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                socket={socket}
+                info={info}
+                post={post}
+                changeInfo={changeInfo}
+              />
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
     </Router>
   );
 }

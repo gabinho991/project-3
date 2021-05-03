@@ -18,7 +18,6 @@ export function FoodSearch(props) {
     const inputRef = useRef(null);
     const socket = props.socket;
     const info = props.info;
-    // TODO:need to query user favorites and check if they're already favorited to switch icons
     const APP_ID = "bd586d90";
     const APP_KEY = "b6e3ba52f5b9a13eb87d67e335cc4e1d";
     const Diet = 'low-fat';
@@ -40,6 +39,10 @@ export function FoodSearch(props) {
     
     const showTable = () => {
       tableStatus === true ? setTableStatus(false) : setTableStatus(true);
+    };
+    
+    const onRemoveFavorite = recipe => {
+      socket.emit("remove_favorite_meal" , {recipe , info});
     };
     
     socket.on("ingredients", (data) => {
@@ -99,7 +102,7 @@ export function FoodSearch(props) {
                 { (currentMealFavorites.includes(recipe.Label) === false) ?
                 <button id="fav-btn" onClick={e => onFavorite(recipe)}><img src="pre-fav.png" /> </button>
                 :  
-                <button id="fav-btn" onClick={e => onFavorite(recipe)}><img src="post-fav.png" /> </button>
+                <button id="fav-btn" onClick={e => onRemoveFavorite(recipe)}><img src="post-fav.png" /> </button>
                 }
                 
                 <h3>{recipe.Label}</h3>

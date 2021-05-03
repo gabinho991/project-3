@@ -22,6 +22,10 @@ function App() {
   socket.on("favorite_meal", (data) => {
     updateMealFavorites({...data});
   });
+  
+  socket.on("remove_favorite_meal", (data) => {
+    updateMealFavorites({...data});
+  });
   //socket.on("social_tab", (data) => {
    // updatepost({ ...data});
   //});

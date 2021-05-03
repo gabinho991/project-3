@@ -54,6 +54,19 @@ def on_connect():
     
    
 @SOCKETIO.on("login")
+
+
+#def getpost():
+    #d={}
+    #all_data = models.Social.query.order_by(desc('date')).all()
+
+    #for elm in all_data:
+        #if elm.username not in d:
+            #d[elm.username]=[elm.post]
+        #else:
+          # d[elm.username].append(elm.post)
+    #return d
+
 def on_login(data):
     ''' Called when user successfully logs in, everything is
     converted to string because its easier to manage in the DB '''
@@ -95,15 +108,17 @@ def on_login(data):
     
     d={}
     all_data = models.Social.query.order_by(desc('date')).all()
-
+    fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
+    favorite_meal_schema = models.FavoriteMealSchema(many=True)
+    favorite_meal_result = favorite_meal_schema.dump(fav_meals)
+    
     for elm in all_data:
         if elm.username not in d:
             d[elm.username]=[elm.post]
         else:
            d[elm.username].append(elm.post)
-    
     SOCKETIO.emit('personal_info',
-                  [personal_data,d],
+                  [personal_data,d , favorite_meal_result],
                   broadcast=True,
                   include_self=True)
 
@@ -154,7 +169,7 @@ def newpost(data):
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
     # DB.session.add(new_post)
     # DB.session.commit()
-    # print(models.Social.query.all())
+    return  models.Social.query.all()
     
 @SOCKETIO.on("ingredients")
 def food_search(data):
@@ -165,7 +180,19 @@ def food_search(data):
     # This emits the 'ingerdient' event from the server to all clients except for
     # the client that emmitted the event that triggered this function
     SOCKETIO.emit("ingredients", food_dict, broadcast=True, include_self=True)
-    
+
+
+@SOCKETIO.on("remove_favorite_meal")
+def on_remove_favorite_meal(data):
+    google_id=(data["info"]["googleID"])
+    link=str(data["recipe"]["Link"])
+    models.FavoriteMeal.query.filter_by(link=link).delete()
+    DB.session.commit()
+    fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
+    favorite_meal_schema = models.FavoriteMealSchema(many=True)
+    result = favorite_meal_schema.dump(fav_meals)
+    SOCKETIO.emit("remove_favorite_meal" , result, broadcast=True, include_self=True)
+
 @SOCKETIO.on("favorite_meal")
 def on_favorite_meal(data):
     # current_user_info = DB.session.query(models.User).filter_by(googleId=google_id).first()

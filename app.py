@@ -12,10 +12,10 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
-# from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv, find_dotenv
 from functions import *
 
-# load_dotenv(find_dotenv())
+load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
@@ -54,6 +54,19 @@ def on_connect():
     
    
 @SOCKETIO.on("login")
+
+
+#def getpost():
+    #d={}
+    #all_data = models.Social.query.order_by(desc('date')).all()
+
+    #for elm in all_data:
+        #if elm.username not in d:
+            #d[elm.username]=[elm.post]
+        #else:
+          # d[elm.username].append(elm.post)
+    #return d
+
 def on_login(data):
     ''' Called when user successfully logs in, everything is
     converted to string because its easier to manage in the DB '''
@@ -101,7 +114,6 @@ def on_login(data):
             d[elm.username]=[elm.post]
         else:
            d[elm.username].append(elm.post)
-    
     SOCKETIO.emit('personal_info',
                   [personal_data,d],
                   broadcast=True,
@@ -154,7 +166,7 @@ def newpost(data):
     # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
     # DB.session.add(new_post)
     # DB.session.commit()
-    # print(models.Social.query.all())
+    return  models.Social.query.all()
     
 @SOCKETIO.on("ingredients")
 def food_search(data):

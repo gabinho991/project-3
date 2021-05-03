@@ -1,17 +1,26 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-<<<<<<< HEAD
-import $ from 'jquery';
-
-=======
 import $ from "jquery";
 //force push
->>>>>>> 133b8132c2e640bb02db36227b6ca28a8d63f114
 export function WorkoutSearch(props) {
   const socket = props.socket;
   const [workouts, setWorkouts] = useState([]);
+  const workoutFavorites = props.workoutFavorites;
+  var currentWorkoutFavorites = [];
 
+  if (workoutFavorites.length !== 0) {
+    Object.keys(workoutFavorites).map((workout) => {
+      currentWorkoutFavorites.push(workoutFavorites[workout].name);
+    });
+  }
+
+  const onFavorite = (workout) => {
+    console.log(workout);
+  };
+  const onRemoveFavorite = (workout) => {
+    console.log("remove");
+  };
   const onSubmit = () => {
     const muscleValue = document.getElementById("muscle").value;
     const url =
@@ -21,9 +30,16 @@ export function WorkoutSearch(props) {
       .fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        //   var x = data.results.description;
-          var y = $(data.results[1].description).text(); //tags are cleaned, just need to update to reflect local stored state
-          console.log(y);
+        data.results.forEach((element) => {
+          var e = element.description;
+          try {
+            e = $(e).text();
+            element.description = e;
+          } catch (exception) {
+          } finally {
+            element.description = element.description;
+          }
+        });
         setWorkouts(data.results);
       });
   };
@@ -55,7 +71,24 @@ export function WorkoutSearch(props) {
                   return (
                     <div>
                       <div className="recipeBox">
+                        {currentWorkoutFavorites.includes(workout.name) ===
+                        false ? (
+                          <button
+                            id="fav-btn"
+                            onClick={(e) => onFavorite(workout)}
+                          >
+                            <img src="pre-fav.png" />{" "}
+                          </button>
+                        ) : (
+                          <button
+                            id="fav-btn"
+                            onClick={(e) => onRemoveFavorite(workout)}
+                          >
+                            <img src="pre-fav.png" />{" "}
+                          </button>
+                        )}
                         <h3> {workout.name} </h3>
+                        <p> {workout.description} </p>
                       </div>
                     </div>
                   );

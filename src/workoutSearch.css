@@ -35,6 +35,7 @@
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
+  cursor:pointer;
   transform: rotateY(180deg);
 }
 
@@ -102,6 +103,10 @@
   background: #55433b;
   color: white;
   border-radius: 7px;
+}
+
+.searchWrap button:hover{
+  cursor:pointer;
 }
 
 .workoutBg {

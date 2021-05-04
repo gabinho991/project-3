@@ -7,6 +7,7 @@ import "../workoutSearch.css";
 export function WorkoutSearch(props) {
   const socket = props.socket;
   const [workouts, setWorkouts] = useState([]);
+  const info = props.info;
   const workoutFavorites = props.workoutFavorites;
   var currentWorkoutFavorites = [];
 
@@ -17,6 +18,7 @@ export function WorkoutSearch(props) {
   }
 
   const onFavorite = (workout) => {
+    // socket.emit("favorite_workout" , {workout , info })
     console.log(workout);
   };
   const onRemoveFavorite = (workout) => {

@@ -29,7 +29,14 @@ function App() {
   socket.on("remove_favorite_meal", (data) => {
     updateMealFavorites({ ...data });
   });
-
+  
+  socket.on("remove_favorite_workout" , (data) => {
+    updateWorkoutFavorites({ ...data })
+  })
+  
+  socket.on("favorite_workout" , (data) => {
+    updateWorkoutFavorites({ ...data })
+  })
   return (
     <Router>
       <div>

@@ -12,6 +12,7 @@ function App() {
   const [info, changeInfo] = useState({});
   const [post, updatepost] = useState({});
   const [mealFavorites, updateMealFavorites] = useState({});
+  const [workoutFavorites, updateWorkoutFavorites] = useState({});
 
   socket.on("personal_info", (data) => {
     changeInfo({ ...data[0] });
@@ -41,6 +42,7 @@ function App() {
             socket={socket}
             setIsLoggedIn={setIsLoggedIn}
             mealFavorites={mealFavorites}
+            workoutFavorites={workoutFavorites}
           />
         ) : (
           <div className="wrap">

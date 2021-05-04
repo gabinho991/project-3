@@ -16,6 +16,8 @@ export function NavBar(props) {
   const post = props.post;
   const changeInfo = props.changeInfo;
   const mealFavorites = props.mealFavorites;
+  const workoutFavorites = props.workoutFavorites;
+
   return (
     <div className="navBarWrapper">
       <div className="NavBar">
@@ -86,7 +88,11 @@ export function NavBar(props) {
             />
           </Route>
           <Route path="/workout">
-            <WorkoutSearch socket={socket} info={info} />
+            <WorkoutSearch
+              workoutFavorites={workoutFavorites}
+              socket={socket}
+              info={info}
+            />
           </Route>
           <Route path="/favorites">
             <Favorites

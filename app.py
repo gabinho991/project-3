@@ -54,27 +54,6 @@ def on_connect():
     
    
 @SOCKETIO.on("login")
-def add_dada(data):
-    '''get all post from db'''
-    d={}
-    for elm in data:
-        if elm.username not in d:
-            d[elm.username]=[elm.post]
-        else:
-           d[elm.username].append(elm.post)
-    return d
-def personaldata(data):
-    data = {
-        "googleID": data.googleId,
-        "imageUrl": data.imageUrl,
-        "givenName": data.givenName,
-        "familyName": data.familyName,
-        "age": data.age,
-        "gender": data.gender,
-        "weight": data.weight,
-        "height": data.height
-    }
-    return data
 def on_login(data):
     ''' Called when user successfully logs in, everything is
     converted to string because its easier to manage in the DB '''
@@ -116,9 +95,50 @@ def on_login(data):
                   [personal_data,d , favorite_meal_result],
                   broadcast=True,
                   include_self=True)
+def add_dada(data2):
+    '''get all post from db'''
+    d={}
+    print(data2)
+    for elm in data2:
+        if elm.username not in d:
+            d[elm.username]=[elm.post]
+        else:
+           d[elm.username].append(elm.post)
+    return d
+def personaldata(data3):
+    data = {
+        "googleID": data3.googleId,
+        "imageUrl": data3.imageUrl,
+        "givenName": data3.givenName,
+        "familyName": data3.familyName,
+        "age": data3.age,
+        "gender": data3.gender,
+        "weight": data3.weight,
+        "height": data3.height
+    }
+    return data
+
 
 
 @SOCKETIO.on("onSubmit")
+
+def getcurent(info):
+    '''get all curent users'''
+    print(models.User.query.filter_by(googleId=info["googleID"]))
+    current_user_info = models.User.query.filter_by(googleId=info["googleID"]).first()
+    personal_data = {
+        "googleID": current_user_info.googleId,
+        "imageUrl": current_user_info.imageUrl,
+        "givenName": current_user_info.givenName,
+        "familyName": current_user_info.familyName,
+        "age": current_user_info.age,
+        "gender": current_user_info.gender,
+        "weight": current_user_info.weight,
+        "height": current_user_info.height
+    }
+
+    
+    return personal_data
 def update_db(data):
     '''called when the user submits changes'''
     # print(data)
@@ -131,24 +151,11 @@ def update_db(data):
     modified_user.weight = data["editWeight"]
     modified_user.height = data["editHeight"]
     DB.session.commit()
-
-    current_user_info = DB.session.query(
-        models.User).filter_by(googleId=data["googleID"]).first()
-    personal_data = {
-        "googleID": current_user_info.googleId,
-        "imageUrl": current_user_info.imageUrl,
-        "givenName": current_user_info.givenName,
-        "familyName": current_user_info.familyName,
-        "age": current_user_info.age,
-        "gender": current_user_info.gender,
-        "weight": current_user_info.weight,
-        "height": current_user_info.height
-    }
-
+    personal_data=getcurent(data)
     SOCKETIO.emit('personal_info',
-                  personal_data,
-                  broadcast=True,
-                  include_self=True)
+                personal_data,
+                broadcast=True,
+                 include_self=True)
 
 
 @SOCKETIO.on("post")

@@ -54,19 +54,15 @@ def on_connect():
     
    
 @SOCKETIO.on("login")
-
-
-#def getpost():
-    #d={}
-    #all_data = models.Social.query.order_by(desc('date')).all()
-
-    #for elm in all_data:
-        #if elm.username not in d:
-            #d[elm.username]=[elm.post]
-        #else:
-          # d[elm.username].append(elm.post)
-    #return d
-
+def add_dada(data):
+    d={}
+    for elm in data:
+        if elm.username not in d:
+            d[elm.username]=[elm.post]
+        else:
+           d[elm.username].append(elm.post)
+    return d
+    
 def on_login(data):
     ''' Called when user successfully logs in, everything is
     converted to string because its easier to manage in the DB '''
@@ -106,17 +102,13 @@ def on_login(data):
         "height": current_user_info.height
     }
     
-    d={}
+    
     all_data = models.Social.query.order_by(desc('date')).all()
     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
     favorite_meal_schema = models.FavoriteMealSchema(many=True)
     favorite_meal_result = favorite_meal_schema.dump(fav_meals)
-    
-    for elm in all_data:
-        if elm.username not in d:
-            d[elm.username]=[elm.post]
-        else:
-           d[elm.username].append(elm.post)
+    d=add_dada(all_data)
+   
     SOCKETIO.emit('personal_info',
                   [personal_data,d , favorite_meal_result],
                   broadcast=True,
@@ -164,11 +156,7 @@ def newpost(data):
    
     DB.session.add(social)
     DB.session.commit()
-    # new_post = data[0]
-    # new_date = date.today()
-    # new_post = models.Social(googleId=identity, post=new_post, date=new_date)
-    # DB.session.add(new_post)
-    # DB.session.commit()
+    
     return  models.Social.query.all()
     
 @SOCKETIO.on("ingredients")

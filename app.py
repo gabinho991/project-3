@@ -55,6 +55,7 @@ def on_connect():
    
 @SOCKETIO.on("login")
 def add_dada(data):
+    '''get all post from db'''
     d={}
     for elm in data:
         if elm.username not in d:
@@ -62,7 +63,18 @@ def add_dada(data):
         else:
            d[elm.username].append(elm.post)
     return d
-    
+def personaldata(data):
+    data = {
+        "googleID": data.googleId,
+        "imageUrl": data.imageUrl,
+        "givenName": data.givenName,
+        "familyName": data.familyName,
+        "age": data.age,
+        "gender": data.gender,
+        "weight": data.weight,
+        "height": data.height
+    }
+    return data
 def on_login(data):
     ''' Called when user successfully logs in, everything is
     converted to string because its easier to manage in the DB '''
@@ -91,18 +103,9 @@ def on_login(data):
     # print(DB.session.query(models.User).filter_by(googleId=google_id).all())
     current_user_info = DB.session.query(
         models.User).filter_by(googleId=google_id).first()
-    personal_data = {
-        "googleID": current_user_info.googleId,
-        "imageUrl": current_user_info.imageUrl,
-        "givenName": current_user_info.givenName,
-        "familyName": current_user_info.familyName,
-        "age": current_user_info.age,
-        "gender": current_user_info.gender,
-        "weight": current_user_info.weight,
-        "height": current_user_info.height
-    }
+   
     
-    
+    personal_data=personaldata(current_user_info)
     all_data = models.Social.query.order_by(desc('date')).all()
     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
     favorite_meal_schema = models.FavoriteMealSchema(many=True)

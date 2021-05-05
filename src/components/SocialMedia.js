@@ -4,7 +4,8 @@ import "../social.css";
 
 export function SocialMedia(props) {
   const message = useRef(null);
-  const [isShown, setshow] = useState(true);
+  // eslint-disable-next-line
+  const [isShown, setshow] = useState(true); //setshow is used, and and we need it in this format because be need to use the state
   const info = props.info;
   const npost = props.post;
   const socket = props.socket;

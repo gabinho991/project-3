@@ -12,9 +12,12 @@ export function WorkoutSearch(props) {
   var currentWorkoutFavorites = [];
 
   if (workoutFavorites.length !== 0) {
+  /* eslint-disable array-callback-return */
+  //this would require us to replace map with for-each, and we do not have time to test that right now
     Object.keys(workoutFavorites).map((workout) => {
       currentWorkoutFavorites.push(workoutFavorites[workout].name);
     });
+  /* eslint-enable array-callback-return */
   }
 
   const onFavorite = (workout) => {
@@ -40,7 +43,8 @@ export function WorkoutSearch(props) {
             element.description = e;
           } catch (exception) {
           } finally {
-            element.description = element.description;
+            // eslint-disable-next-line
+            element.description = element.description;//this self assign is the shorted way without having to store it in a different variable
           }
         });
         setWorkouts(data.results);

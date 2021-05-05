@@ -12,10 +12,10 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 from functions import *
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
@@ -123,8 +123,6 @@ def personaldata(data3):
 @SOCKETIO.on("onSubmit")
 def update_db(data):
     '''called when the user submits changes'''
-    # print(data)
-    # socketio.emit('personal_info', data, broadcast=True, include_self=True)
     modified_user = DB.session.query(
         models.User).filter_by(googleId=data["googleID"]).first()
     modified_user.age = data["editAge"]

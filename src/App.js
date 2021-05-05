@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import { useState } from "react";
 import { Login } from "./Login.js";
 import { Landing } from "./Landing.js";
+import { BrowserRouter as Router } from "react-router-dom";
 
 //import { useEffect } from "react";
 
@@ -22,7 +23,7 @@ function App() {
   });
   socket.on("profile_update" , (data) => {
     changeInfo({ ...data});
-  })
+  });
   socket.on("favorite_meal", (data) => {
     updateMealFavorites({ ...data });
   });
@@ -32,12 +33,12 @@ function App() {
   });
   
   socket.on("remove_favorite_workout" , (data) => {
-    updateWorkoutFavorites({ ...data })
-  })
+    updateWorkoutFavorites({ ...data });
+  });
   
   socket.on("favorite_workout" , (data) => {
-    updateWorkoutFavorites({ ...data })
-  })
+    updateWorkoutFavorites({ ...data });
+  });
   return (
     <Router>
       <div>

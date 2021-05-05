@@ -5,16 +5,13 @@ export function Profile(props) {
   const info = props.info;
   const socket = props.socket;
   const [edit, changeEdit] = useState(false);
+
   function isEdit() {
     changeEdit(true);
-    //document.getElementById("editButton").style.display = "none";
-    //document.getElementById("editPage").style.display = "block";
   }
 
   function onSubmit() {
     changeEdit(false);
-    //document.getElementById("editButton").style.display = "block";
-    //document.getElementById("editPage").style.display = "none";
     var editAge = document.getElementById("editAge").value;
     if (editAge === "") editAge = info.age;
 
@@ -27,13 +24,6 @@ export function Profile(props) {
     var editHeight = document.getElementById("editHeight").value;
     if (editHeight === "") editHeight = info.height;
 
-    console.log({
-      googleID: info.googleID,
-      editAge: editAge,
-      editGender: editGender,
-      editWeight: editWeight,
-      editHeight: editHeight,
-    });
     socket.emit("onSubmit", {
       googleID: info.googleID,
       editAge: editAge,
@@ -42,9 +32,6 @@ export function Profile(props) {
       editHeight: editHeight,
     });
   }
-  socket.on("personal_info", (data) => {
-    console.log(data);
-  });
 
   return (
     <div className="profilePage">

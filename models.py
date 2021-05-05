@@ -78,3 +78,7 @@ class FavoriteMeal(DB.Model):
 class FavoriteMealSchema(marshm.Schema):
     class Meta:
         fields=('link' , 'image' , 'label')
+
+class FavoriteWorkoutSchema(marshm.Schema):
+    class Meta:
+        fields=('name' , 'description')

@@ -1,7 +1,8 @@
 import * as React from "react";
 export function Favorites(props) {
-  const socket = props.socket;
+  // const socket = props.socket;
   const mealFavorites = props.mealFavorites;
+  // const workoutFavorites = props.workoutFavorites;
   return (
     <div className="recipeBg">
       <div className="recipeWrap">
@@ -14,7 +15,7 @@ export function Favorites(props) {
               <div>
                 <div className="recipeBox">
                   <h3>{mealFavorites[recipe].label}</h3>
-                  <a href={mealFavorites[recipe].link} target="_blank">
+                  <a href={mealFavorites[recipe].link} target="_blank" rel="noreferrer">
                     <img src={mealFavorites[recipe].image} alt="food"></img>
                   </a>
                 </div>

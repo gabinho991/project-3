@@ -124,7 +124,6 @@ def personaldata(data3):
 def update_db(data):
     '''called when the user submits changes'''
     # print(data)
-    # print(data.googleID)
     # socketio.emit('personal_info', data, broadcast=True, include_self=True)
     modified_user = DB.session.query(
         models.User).filter_by(googleId=data["googleID"]).first()
@@ -206,15 +205,22 @@ def on_favorite_meal(data):
     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
     favorite_meal_schema = models.FavoriteMealSchema(many=True)
     result = favorite_meal_schema.dump(fav_meals)
-    SOCKETIO.emit("favorite_meal" , result, broadcast=True, include_self=True)
+    SOCKETIO.emit("favorite_meal" , result, broadcast=False, include_self=True)
     
-# @SOCKETIO.on("user_meal_favorites")
-# def get_meal_favorites(data):
-#     google_id=data["googleId"]
-#     fav_meals=models.FavoriteMeal.query.filter_by(googleId=google_id).all()
-#     favorite_meal_schema = models.FavoriteMealSchema(many=True)
-#     result = favorite_meal_schema.dump(fav_meals)
-#     SOCKETIO.emit("user_meal_favorites" , result, broadcast=True, include_self=True)
+@SOCKETIO.on("favorite_workout")
+def on_workout_favorite(data):
+    desc = data["workout"]["description"]
+    google_id = data["info"]["googleID"]
+    workout_name = data["workout"]["name"]
+    ret = DB.session.query(exists().where(models.FavoriteWorkout.name == workout_name)).scalar()
+    if ret is False:
+        favorite_workout = models.FavoriteWorkout(googleId=google_id , name = workout_name , desc = desc)
+        DB.session.add(favorite_workout)
+        DB.session.commit()
+    favorite_workouts=models.FavoriteWorkout.query.filter_by(googleId=google_id).all()
+    favorite_workout_schema = models.FavoriteWorkoutSchema(many=True)
+    result = favorite_workout_schema.dump(favorite_workouts)
+    SOCKETIO.emit("favorite_workout" , result, broadcast=False, include_self=True)
     
 if __name__ == "__main__":
     SOCKETIO.run(

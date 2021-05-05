@@ -15,11 +15,13 @@ function App() {
   const [workoutFavorites, updateWorkoutFavorites] = useState({});
 
   socket.on("personal_info", (data) => {
-    changeInfo({ ...data[0] });
+    changeInfo({ ...data[0]});
     updatepost({ ...data[1] });
     updateMealFavorites({ ...data[2] });
   });
-
+  socket.on("profile_update" , (data) => {
+    changeInfo({ ...data});
+  })
   socket.on("favorite_meal", (data) => {
     updateMealFavorites({ ...data });
   });
@@ -27,10 +29,14 @@ function App() {
   socket.on("remove_favorite_meal", (data) => {
     updateMealFavorites({ ...data });
   });
-  //socket.on("social_tab", (data) => {
-  // updatepost({ ...data});
-  //});
-
+  
+  socket.on("remove_favorite_workout" , (data) => {
+    updateWorkoutFavorites({ ...data })
+  })
+  
+  socket.on("favorite_workout" , (data) => {
+    updateWorkoutFavorites({ ...data })
+  })
   return (
     <Router>
       <div>

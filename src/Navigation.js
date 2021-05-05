@@ -5,7 +5,7 @@ import { Profile } from "./components/Profile";
 import { SocialMedia } from "./components/SocialMedia";
 import { FoodSearch } from "./components/foodSearch";
 import { WorkoutSearch } from "./components/workoutSearch";
-import { Home } from "./components/home";
+//import { Home } from "./components/home";
 import { Logout } from "./Logout.js";
 
 export function NavBar(props) {

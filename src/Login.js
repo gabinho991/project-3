@@ -6,7 +6,7 @@ const clientId =
 export function Login(props) {
   const setIsLoggedIn = props.setIsLoggedIn;
   const socket = props.socket;
-  const info = props.info;
+  //const info = props.info;
   const changeInfo = props.changeInfo;
 
   const onLoginSuccess = (data) => {

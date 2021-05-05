@@ -133,13 +133,14 @@ def update_db(data):
     modified_user.height = data["editHeight"]
     DB.session.commit()
     personal_data=getcurent(data)
-    SOCKETIO.emit('personal_info',
+    
+    SOCKETIO.emit('profile_update',
                 personal_data,
                 broadcast=True,
                  include_self=True)
 def getcurent(info):
     '''get all curent users'''
-    print(models.User.query.filter_by(googleId=info["googleID"]))
+    
     current_user_info = models.User.query.filter_by(googleId=info["googleID"]).first()
     personal_data = {
         "googleID": current_user_info.googleId,

@@ -3,67 +3,87 @@ import { useState, useRef } from "react";
 import "../social.css";
 
 export function SocialMedia(props) {
-  const [post, updatepost] = useState([]);
   const message = useRef(null);
   const [isShown, setshow] = useState(true);
-  //const socket= props.socket;
-  // const User = props.userinfos;
+  const info = props.info;
+  const npost = props.post;
+  const socket = props.socket;
 
+  console.log(npost);
+  const [post, updatepost] = useState(npost);
+  // let x = Object.keys(npost).length;
+
+  //updatepost({...npost});
+  console.log(npost);
   function post_function() {
     const nmessage = message.current.value;
-    const new_post = [...post];
-    new_post.push(nmessage);
-    updatepost(new_post);
-    //socket.emit('post',[nmessage,User[3]]);
+    const new_post = { ...post };
+    document.getElementById("output").value = "";
+    if (info.familyName + " " + info.givenName in new_post) {
+      new_post[info.familyName + " " + info.givenName].push(nmessage);
+    } else {
+      new_post[info.familyName + " " + info.givenName] = nmessage;
+    }
 
-    //setshow((prevShow) => !prevShow);
-  }
-  function post_button() {
+    updatepost(new_post);
+    socket.emit("post", [
+      info.googleID,
+      nmessage,
+      info.familyName + " " + info.givenName,
+      info.imageUrl,
+    ]);
+
     setshow((prevShow) => !prevShow);
   }
 
-  return (
-    <div>
-      <h1>Social Media Page</h1>
-
-      <div className="post">
-        <button
-          className="button"
-          type="button"
-          onClick={() => {
-            post_button();
-          }}
-        >
-          {" "}
-          Click here to add a post
-        </button>
-
-        {!isShown ? (
+  function foo() {
+    return (
+      <div>
+        {Object.keys(post).map((key, i) => (
           <div>
-            <textarea
-              ref={message}
-              placeholder="Type message.."
-              rows="6"
-              cols="50"
-            />
-            <button
-              className="button2"
-              type="button"
-              onClick={() => {
-                post_function();
-              }}
-            >
-              {" "}
-              Post
-            </button>
+            {post[key].map((item, index) => (
+              <div style={{ margin: "3em 0" }}>
+                <p>{key}</p>
+                <div className="chatBox">
+                  <pre>{item}</pre>
+                </div>
+              </div>
+            ))}
           </div>
-        ) : null}
-        <div className="userpost">
-          {post.map((item) => (
-            <div>
-              <pa> {item} </pa>
-            </div>
-          ))}
+        ))}
+      </div>
+    );
+  }
+
+  // function post_button() {
+  //   setshow((prevShow) => !prevShow);
+  // }
+
+  return (
+    <div className="socialMediaWrap">
+      <h1>Social Media Page </h1>
+
+      <div className="socialBody">
+        <div className="messageBody">
+          <textarea
+            ref={message}
+            placeholder="Type message.."
+            rows="6"
+            cols="50"
+            id="output"
+          />
+          <button
+            class="button2"
+            type="button"
+            onClick={() => {
+              post_function();
+            }}
+          >
+            POST
+          </button>
+        </div>
+        <div class="userpost">
+          <div style={{ overflow: "auto", width: "100%" }}>{foo()}</div>
         </div>
       </div>
     </div>

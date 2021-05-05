@@ -12,7 +12,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from sqlalchemy import desc
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 from functions import *
 
 load_dotenv(find_dotenv())

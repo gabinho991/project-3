@@ -15,7 +15,7 @@ from sqlalchemy import desc
 # from dotenv import load_dotenv, find_dotenv
 from functions import *
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(

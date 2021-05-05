@@ -123,8 +123,6 @@ def personaldata(data3):
 @SOCKETIO.on("onSubmit")
 def update_db(data):
     '''called when the user submits changes'''
-    # print(data)
-    # socketio.emit('personal_info', data, broadcast=True, include_self=True)
     modified_user = DB.session.query(
         models.User).filter_by(googleId=data["googleID"]).first()
     modified_user.age = data["editAge"]

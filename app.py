@@ -98,7 +98,7 @@ def on_login(data):
 def add_dada(data2):
     '''get all post from db'''
     d={}
-    print(data2)
+    
     for elm in data2:
         if elm.username not in d:
             d[elm.username]=[elm.post]
@@ -121,24 +121,6 @@ def personaldata(data3):
 
 
 @SOCKETIO.on("onSubmit")
-
-def getcurent(info):
-    '''get all curent users'''
-    print(models.User.query.filter_by(googleId=info["googleID"]))
-    current_user_info = models.User.query.filter_by(googleId=info["googleID"]).first()
-    personal_data = {
-        "googleID": current_user_info.googleId,
-        "imageUrl": current_user_info.imageUrl,
-        "givenName": current_user_info.givenName,
-        "familyName": current_user_info.familyName,
-        "age": current_user_info.age,
-        "gender": current_user_info.gender,
-        "weight": current_user_info.weight,
-        "height": current_user_info.height
-    }
-
-    
-    return personal_data
 def update_db(data):
     '''called when the user submits changes'''
     # print(data)
@@ -156,6 +138,24 @@ def update_db(data):
                 personal_data,
                 broadcast=True,
                  include_self=True)
+def getcurent(info):
+    '''get all curent users'''
+    print(models.User.query.filter_by(googleId=info["googleID"]))
+    current_user_info = models.User.query.filter_by(googleId=info["googleID"]).first()
+    personal_data = {
+        "googleID": current_user_info.googleId,
+        "imageUrl": current_user_info.imageUrl,
+        "givenName": current_user_info.givenName,
+        "familyName": current_user_info.familyName,
+        "age": current_user_info.age,
+        "gender": current_user_info.gender,
+        "weight": current_user_info.weight,
+        "height": current_user_info.height
+    }
+
+    
+    return personal_data
+
 
 
 @SOCKETIO.on("post")

@@ -11,7 +11,7 @@ export function SocialMedia(props) {
 
   console.log(npost);
   const [post, updatepost] = useState(npost);
-  let x = Object.keys(npost).length;
+  // let x = Object.keys(npost).length;
 
   //updatepost({...npost});
   console.log(npost);
@@ -55,9 +55,9 @@ export function SocialMedia(props) {
     );
   }
 
-  function post_button() {
-    setshow((prevShow) => !prevShow);
-  }
+  // function post_button() {
+  //   setshow((prevShow) => !prevShow);
+  // }
 
   return (
     <div className="socialMediaWrap">

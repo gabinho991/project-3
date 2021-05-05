@@ -1,13 +1,13 @@
 import * as React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
 import $ from "jquery";
 import "../workoutSearch.css";
 //force-push #2
 export function WorkoutSearch(props) {
-  const socket = props.socket;
+  // const socket = props.socket;
   const [workouts, setWorkouts] = useState([]);
-  const info = props.info;
+  // const info = props.info;
   const workoutFavorites = props.workoutFavorites;
   var currentWorkoutFavorites = [];
 
@@ -81,7 +81,7 @@ export function WorkoutSearch(props) {
                         <div className="workoutBoxFront">
                           <h3> {workout.name} </h3>
                           <div className="imgContainer">
-                            <img src="https://img.etimg.com/photo/msid-74747053,quality-100/for-miles-a-great-bodyweight-workout-would-include-squats-push-ups-walking-lunges-.jpg" />
+                            <img src="https://img.etimg.com/photo/msid-74747053,quality-100/for-miles-a-great-bodyweight-workout-would-include-squats-push-ups-walking-lunges-.jpg" alt="great bodyweight workout"/>
                           </div>
                         </div>
                         <div className="workoutBoxBack">
@@ -91,14 +91,14 @@ export function WorkoutSearch(props) {
                               id="fav-btn"
                               onClick={(e) => onFavorite(workout)}
                             >
-                              <img src="pre-fav.png" />{" "}
+                              <img src="pre-fav.png" alt="pre-favorites"/>{" "}
                             </button>
                           ) : (
                             <button
                               id="fav-btn"
                               onClick={(e) => onRemoveFavorite(workout)}
                             >
-                              <img src="pre-fav.png" />{" "}
+                              <img src="pre-fav.png" alt="pre-favorites"/>{" "}
                             </button>
                           )}
                           <p> {workout.description} </p>

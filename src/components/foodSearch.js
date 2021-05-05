@@ -101,19 +101,19 @@ export function FoodSearch(props) {
                   <div className="recipeBox">
                     {currentMealFavorites.includes(recipe.Label) === false ? (
                       <button id="fav-btn" onClick={(e) => onFavorite(recipe)}>
-                        <img src="pre-fav.png" />{" "}
+                        <img src="pre-fav.png" alt="pre-favorites"/>{" "}
                       </button>
                     ) : (
                       <button
                         id="fav-btn"
                         onClick={(e) => onRemoveFavorite(recipe)}
                       >
-                        <img src="post-fav.png" />{" "}
+                        <img src="post-fav.png" alt="post-favorites"/>{" "}
                       </button>
                     )}
 
                     <h3>{recipe.Label}</h3>
-                    <a href={recipe.Link} target="_blank">
+                    <a href={recipe.Link} target="_blank" rel="noreferrer">
                       <img src={recipe.Image} alt="food"></img>
                     </a>
                   </div>

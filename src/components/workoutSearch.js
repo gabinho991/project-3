@@ -40,7 +40,8 @@ export function WorkoutSearch(props) {
             element.description = e;
           } catch (exception) {
           } finally {
-            element.description = element.description;
+            // eslint-disable-next-line
+            element.description = element.description;//this self assign is the shorted way without having to store it in a different variable
           }
         });
         setWorkouts(data.results);

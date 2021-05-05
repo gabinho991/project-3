@@ -12,9 +12,11 @@ export function FoodSearch(props) {
   // This is an optimization issue as mealFavorites gets very large, if some time left, try optimize it
   // but it def requires changing structure on frontend and backend.
   if (mealFavorites.length !== 0) {
+    /* eslint-disable array-callback-return */
     Object.keys(mealFavorites).map((recipe) => {
       currentMealFavorites.push(mealFavorites[recipe].label);
     });
+    /* eslint-enable array-callback-return */
   }
 
   const inputRef = useRef(null);

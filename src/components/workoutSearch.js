@@ -12,9 +12,11 @@ export function WorkoutSearch(props) {
   var currentWorkoutFavorites = [];
 
   if (workoutFavorites.length !== 0) {
+  /* eslint-disable array-callback-return */
     Object.keys(workoutFavorites).map((workout) => {
       currentWorkoutFavorites.push(workoutFavorites[workout].name);
     });
+  /* eslint-enable array-callback-return */
   }
 
   const onFavorite = (workout) => {

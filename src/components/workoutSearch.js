@@ -13,6 +13,7 @@ export function WorkoutSearch(props) {
 
   if (workoutFavorites.length !== 0) {
   /* eslint-disable array-callback-return */
+  //this would require us to replace map with for-each, and we do not have time to test that right now
     Object.keys(workoutFavorites).map((workout) => {
       currentWorkoutFavorites.push(workoutFavorites[workout].name);
     });

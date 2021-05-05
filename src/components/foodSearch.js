@@ -13,6 +13,7 @@ export function FoodSearch(props) {
   // but it def requires changing structure on frontend and backend.
   if (mealFavorites.length !== 0) {
     /* eslint-disable array-callback-return */
+    //this would require us to replace map with for-each, and we do not have time to test that right now
     Object.keys(mealFavorites).map((recipe) => {
       currentMealFavorites.push(mealFavorites[recipe].label);
     });

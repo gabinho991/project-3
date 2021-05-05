@@ -10,6 +10,7 @@
 ## Heroku App
 
 [Sprint 1](https://project-3-njit.herokuapp.com/)
+
 [Sprint 2](https://project-3-sprint-2.herokuapp.com/)
 
 ## Description

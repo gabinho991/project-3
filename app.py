@@ -14,12 +14,13 @@ from sqlalchemy import exists
 from sqlalchemy import desc
 from dotenv import load_dotenv, find_dotenv
 from functions import *
+from social import quote
 
 load_dotenv(find_dotenv())
 
 # https://stackoverflow.com/questions/66690321/flask-and-heroku-sqlalchemy-exc-nosuchmoduleerror-cant-load-plugin-sqlalchemy
-#SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
-#   "://", "ql://", 1)
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace(
+  "://", "ql://", 1)
 APP = Flask(__name__, static_folder="./build/static")
 
 CORS = CORS(APP, resources={r"/*": {"origins": "*"}})
@@ -29,8 +30,8 @@ SOCKETIO = SocketIO(APP,
                     json=json,
                     manage_session=False)
 
-#APP.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-APP.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
+APP.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
+# APP.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
 APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 DB = SQLAlchemy(APP)
@@ -90,9 +91,10 @@ def on_login(data):
     favorite_meal_schema = models.FavoriteMealSchema(many=True)
     favorite_meal_result = favorite_meal_schema.dump(fav_meals)
     d=add_dada(all_data)
+    Quotes=quote()
    
     SOCKETIO.emit('personal_info',
-                  [personal_data,d , favorite_meal_result],
+                  [personal_data,[d,Quotes] , favorite_meal_result],
                   broadcast=True,
                   include_self=True)
 def add_dada(data2):
@@ -123,8 +125,6 @@ def personaldata(data3):
 @SOCKETIO.on("onSubmit")
 def update_db(data):
     '''called when the user submits changes'''
-    # print(data)
-    # socketio.emit('personal_info', data, broadcast=True, include_self=True)
     modified_user = DB.session.query(
         models.User).filter_by(googleId=data["googleID"]).first()
     modified_user.age = data["editAge"]

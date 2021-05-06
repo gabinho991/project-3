@@ -7,14 +7,18 @@ export function SocialMedia(props) {
   // eslint-disable-next-line
   const [isShown, setshow] = useState(true); //setshow is used, and and we need it in this format because be need to use the state
   const info = props.info;
-  const npost = props.post;
+  const npost = props.post[0];
+  const quote=props.post[1];
   const socket = props.socket;
 
   console.log(npost);
   const [post, updatepost] = useState(npost);
   // let x = Object.keys(npost).length;
-
-  //updatepost({...npost});
+  let num= Math.floor(Math.random() * Object.keys(quote).length);
+  
+  let item = quote[num]['text'];
+  let item2 = quote[num]['author'];
+ 
   console.log(npost);
   function post_function() {
     const nmessage = message.current.value;
@@ -63,9 +67,11 @@ export function SocialMedia(props) {
   return (
     <div className="socialMediaWrap">
       <h1>Social Media Page </h1>
-
+     
       <div className="socialBody">
+       
         <div className="messageBody">
+        <p>{'"'+item +'" : '}{item2} </p>
           <textarea
             ref={message}
             placeholder="Type message.."

@@ -14,6 +14,7 @@ from sqlalchemy import exists
 from sqlalchemy import desc
 # from dotenv import load_dotenv, find_dotenv
 from functions import *
+from social import quote
 
 # load_dotenv(find_dotenv())
 
@@ -90,9 +91,10 @@ def on_login(data):
     favorite_meal_schema = models.FavoriteMealSchema(many=True)
     favorite_meal_result = favorite_meal_schema.dump(fav_meals)
     d=add_dada(all_data)
+    Quotes=quote()
    
     SOCKETIO.emit('personal_info',
-                  [personal_data,d , favorite_meal_result],
+                  [personal_data,[d,Quotes] , favorite_meal_result],
                   broadcast=True,
                   include_self=True)
 def add_dada(data2):

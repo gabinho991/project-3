@@ -27,7 +27,7 @@ export function SocialMedia(props) {
     if (info.familyName + " " + info.givenName in new_post) {
       new_post[info.familyName + " " + info.givenName].push(nmessage);
     } else {
-      new_post[info.familyName + " " + info.givenName] = nmessage;
+      new_post[info.familyName + " " + info.givenName] = [nmessage];
     }
 
     updatepost(new_post);
